@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-11-30T10:12:50Z" product-name="pxa_recipe_db">
+		<header/>
+		<body>
+			<trans-unit id="name.description">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="description.description">
+				<source>description</source>
+			</trans-unit>
+			<trans-unit id="image.description">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="pdf.description">
+				<source>PDF file with recepie</source>
+			</trans-unit>
+			<trans-unit id="issuu_config_id.description">
+				<source>Issuu configid (the value in the data-configid attribute)</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,42 @@
+
+<f:layout name="Default" />
+
+This Template is responsible for displaying a single view for a domain object
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        Show.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+
+<f:flashMessages/>
+
+<f:if condition="{recipes}">
+    <f:for each="{recipes}" as="recipe">
+        <f:link.action action="show" arguments="{recipe : recipe}" pageUid="{settings.detailPid}">
+            <f:if condition="{recipe.image}">
+                <f:then>
+                    <f:image src="{recipe.image.uid}" treatIdAsReference="1" alt="{recipe.image.originalResource.title}" class="img-responsive" width="{settings.promotion.item.image.width}" height="{settings.promotion.item.image.height}" />
+                </f:then>
+                <f:else>
+                    <f:image src="{settings.promotion.item.image.no-image}" alt="{recipe.image.originalResource.title}" class="img-responsive" width="{settings.promotion.item.image.width}" height="{settings.promotion.item.image.height}" />
+                </f:else>       
+            </f:if>
+            <div class="item-description">
+                <f:if condition="{recipe.categories}">
+                    <p><f:for each="{recipe.categories}" as="category">{category.title}</f:for></p>
+                </f:if>
+                <f:if condition="{recipe.name}">
+                    <h4>{recipe.name}</h4>
+                </f:if>
+            </div>
+        </f:link.action>
+    </f:for>
+</f:if>
+
+</f:section>

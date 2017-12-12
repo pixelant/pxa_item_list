@@ -1,0 +1,111 @@
+
+plugin.tx_pxarecipedb_recipe {
+	view {
+		templateRootPath = {$plugin.tx_pxarecipedb_recipe.view.templateRootPath}
+		partialRootPath = {$plugin.tx_pxarecipedb_recipe.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_pxarecipedb_recipe.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_pxarecipedb_recipe.persistence.storagePid}
+	}
+}
+
+plugin.tx_pxarecipedb._CSS_DEFAULT_STYLE (
+	textarea.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	.tx-pxa-recipe-db table {
+		border-collapse:separate;
+		border-spacing:10px;
+	}
+
+	.tx-pxa-recipe-db table th {
+		font-weight:bold;
+	}
+
+	.tx-pxa-recipe-db table td {
+		vertical-align:top;
+	}
+
+	.typo3-messages .message-error {
+		color:red;
+	}
+
+	.typo3-messages .message-ok {
+		color:green;
+	}
+
+)
+
+## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
+plugin.tx_pxarecipedb._CSS_DEFAULT_STYLE >
+plugin.tx_pxarecipedb_recipe {
+    # Remove persistence setting so extbase will use recode page from content element
+    persistence >
+    view >
+    view {
+        templateRootPaths {
+            default = {$plugin.tx_pxarecipedb_recipe.view.templateRootPath}
+        }
+        partialRootPaths {
+            default = {$plugin.tx_pxarecipedb_recipe.view.partialRootPath}
+        }
+        layoutRootPaths {
+            default = {$plugin.tx_pxarecipedb_recipe.view.layoutRootPath}
+        }
+    }
+    settings {
+        js {
+            dontInlcudeInController = 0
+        }
+        filter {
+            class =
+            classFilter = btn-default
+            classFilterActive = btn-primary
+        }
+        detail {
+            image {
+                width = 600
+                height = 600
+            }
+        }
+        list {
+            class = row
+            item {
+                image {
+                    width = 300c
+                    height = 300c
+                    no-image = EXT:pxa_recipe_db/Resources/Public/Images/no-image.png
+                }
+                class = item col-md-3 col-sm-6 col-xs-12
+            }
+        }
+        promotion {
+            item {
+                image {
+                    width = 360c
+                    height = 575c
+                    no-image = EXT:pxa_recipe_db/Resources/Public/Images/no-image.png
+                }
+            }
+        }
+        latest {
+            class = row
+            item {
+                image {
+                    width = 300c
+                    height = 300c
+                    no-image = EXT:pxa_recipe_db/Resources/Public/Images/no-image.png
+                }
+                class = item col-md-3 col-sm-6 col-xs-12
+            }
+        }
+	}
+}

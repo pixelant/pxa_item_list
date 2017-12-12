@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-11-30T10:12:00Z" product-name="pxa_recipe_db">
+		<header/>
+		<body>
+			<trans-unit id="tx_pxarecipedb_domain_model_recipe" approved="yes">
+				<source>Recipe</source> <target state="translated">Recept</target></trans-unit>
+			<trans-unit id="tx_pxarecipedb_domain_model_recipe.name" approved="yes">
+				<source>Name</source> <target state="translated">Namn</target></trans-unit>
+			<trans-unit id="tx_pxarecipedb_domain_model_recipe.description" approved="yes">
+				<source>Description</source> <target state="translated">Beskrivning</target></trans-unit>
+			<trans-unit id="tx_pxarecipedb_domain_model_recipe.image" approved="yes">
+				<source>Image</source> <target state="translated">Bild</target></trans-unit>
+			<trans-unit id="tx_pxarecipedb_domain_model_recipe.pdf" approved="yes">
+				<source>Pdf</source> <target state="translated">PDF</target></trans-unit>
+			<trans-unit id="tx_pxarecipedb_domain_model_recipe.issuu_config_id" approved="yes">
+				<source>Issuu Config Id</source> <target state="translated">Issuu id</target></trans-unit>
+			<trans-unit id="tx_pxarecipedb_domain_model_recipe.date" approved="yes">
+				<source>Date</source> <target state="translated">Datum</target></trans-unit>
+			<trans-unit id="label.recipeCategories" approved="yes">
+				<source>Recipe-categories</source> <target state="translated">Kategori</target></trans-unit>
+			<trans-unit id="label.download" approved="yes">
+				<source>Download</source> <target state="translated">Ladda ned</target></trans-unit>
+			<trans-unit id="label.showAll" approved="yes">
+				<source>Show all</source> <target state="translated">Visa alla</target></trans-unit>
+			<trans-unit id="label.description" approved="yes">
+				<source>Description</source> <target state="translated">Beskrivning</target></trans-unit>
+			<trans-unit id="label.category" approved="yes">
+				<source>Category</source> <target state="translated">Kategori</target></trans-unit>
+			<trans-unit id="label.backToList" approved="yes">
+				<source>All recipes</source> <target state="translated">Alla recept</target></trans-unit>				
+		</body>
+	</file>
+</xliff>

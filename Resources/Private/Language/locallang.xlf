@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-11-30T10:12:00Z" product-name="pxa_recipe_db">
+		<header/>
+		<body>
+			<trans-unit id="tx_pxarecipedb_domain_model_recipe">
+				<source>Recipe</source>
+			</trans-unit>
+			<trans-unit id="tx_pxarecipedb_domain_model_recipe.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_pxarecipedb_domain_model_recipe.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_pxarecipedb_domain_model_recipe.image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_pxarecipedb_domain_model_recipe.pdf">
+				<source>Pdf</source>
+			</trans-unit>
+			<trans-unit id="tx_pxarecipedb_domain_model_recipe.issuu_config_id">
+				<source>Issuu Config Id</source>
+			</trans-unit>
+			<trans-unit id="tx_pxarecipedb_domain_model_recipe.date">
+				<source>Date</source>
+			</trans-unit>
+			<trans-unit id="label.recipeCategories">
+				<source>Recipe-categories</source>
+			</trans-unit>
+			<trans-unit id="label.download">
+				<source>Download</source>
+			</trans-unit>
+			<trans-unit id="label.showAll">
+				<source>Show all</source>
+			</trans-unit>
+			<trans-unit id="label.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="label.category">
+				<source>Category</source>
+			</trans-unit>
+			<trans-unit id="label.backToList">
+				<source>All recipes</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

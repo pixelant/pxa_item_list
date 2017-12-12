@@ -1,0 +1,20 @@
+{
+    "name": "pixelant/pxa-recipe-db",
+    "description": "A simpe recepie plugin, list and detail view",
+    "type": "typo3-cms-extension",
+    "license": ["GPL-3.0+"],
+    "keywords": ["TYPO3 Recipe"],
+    "version": "1.0.0",
+    "autoload": {
+        "psr-4": {
+            "Pixelant\\PxaRecipeDb\\": "Classes/"
+        }
+    },
+    "replace": {
+        "pxa_recipe_db": "self.version",
+        "pixelant/pxa_recipe_db": "self.version"
+    },
+    "require": {
+        "typo3/cms": ">=6.2.0 <=8.9.99"
+    }
+}
