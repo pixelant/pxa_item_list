@@ -1,7 +1,7 @@
-var PxaRecepieDb = PxaRecepieDb || {};
-var recipeLists = {};
+var PxaItemDb = PxaItemDb || {};
+var itemLists = {};
 
-PxaRecepieDb.event = {
+PxaItemDb.event = {
     addListener: function(selector, type, fn) {
         $(selector).on(type, function() {
             fn($(this));
@@ -9,12 +9,12 @@ PxaRecepieDb.event = {
     }
 }
 
-PxaRecepieDb.filter = {
+PxaItemDb.filter = {
     updateVisibleItems: function(selectedFilter) {
 
         event.preventDefault();
 
-        PxaRecepieDb.filter.removeDetailView();
+        PxaItemDb.filter.removeDetailView();
 
         var parent = $(selectedFilter).data('parent');
         var activeFilter = $(selectedFilter).data('filter');
@@ -22,7 +22,7 @@ PxaRecepieDb.filter = {
         var activeFilterClass = $('[data-usage="filter-container"][data-parent="' + parent + '"]').data('filter-class-active');
 
         // Remove "active" class on all fliters and add active on this
-        $('[data-usage="recipe-filter"][data-parent="' + parent + '"]').each(function() {
+        $('[data-usage="item-filter"][data-parent="' + parent + '"]').each(function() {
             $(this).removeClass(activeFilterClass);
             // add default class if it is missing
             if(!$(this).hasClass(filterClass)) {
@@ -33,7 +33,7 @@ PxaRecepieDb.filter = {
         $(selectedFilter).addClass(activeFilterClass);
 
         // Loop thru all list items and set visibility
-        $('[data-usage="recipe-list-item"][data-parent="' + parent + '"]').each(function() {
+        $('[data-usage="item-list-item"][data-parent="' + parent + '"]').each(function() {
             if($(this).hasClass(activeFilter) || activeFilter === '*') {
                 $(this).show();
             } else {
@@ -42,16 +42,16 @@ PxaRecepieDb.filter = {
         });
     },
     loadDetail: function(item) {
-        var lastItem = PxaRecepieDb.filter.getLastItemOnRow($(item));
-        PxaRecepieDb.filter.addDetailView(item, lastItem);
+        var lastItem = PxaItemDb.filter.getLastItemOnRow($(item));
+        PxaItemDb.filter.addDetailView(item, lastItem);
     },
     getLastItemOnRow: function(item) {
-        var nextVisibleItem = PxaRecepieDb.filter.getNextVisibleItem(item);
+        var nextVisibleItem = PxaItemDb.filter.getNextVisibleItem(item);
         if (nextVisibleItem.length > 0) {
             if (item.position().top !== nextVisibleItem.position().top) {
                 return item;
             } else {
-                return PxaRecepieDb.filter.getLastItemOnRow(nextVisibleItem);
+                return PxaItemDb.filter.getLastItemOnRow(nextVisibleItem);
             }
         } else {
             return item;
@@ -62,7 +62,7 @@ PxaRecepieDb.filter = {
             if (item.next().css('display') !== 'none') {
                 return item.next();
             } else {
-                return PxaRecepieDb.filter.getNextVisibleItem(item.next());
+                return PxaItemDb.filter.getNextVisibleItem(item.next());
             }
         } else {
             return false;
@@ -70,7 +70,7 @@ PxaRecepieDb.filter = {
     },
     addDetailView: function(item, afterElement) {
 
-        PxaRecepieDb.filter.removeDetailView();
+        PxaItemDb.filter.removeDetailView();
 
         var template = $('#show-item-template').clone();
         template.attr("id", "detailView");
@@ -94,7 +94,7 @@ PxaRecepieDb.filter = {
         }
 
         $(afterElement).after(template);
-        PxaRecepieDb.event.addListener('[data-usage="close-detail-view"]', 'click', PxaRecepieDb.filter.removeDetailView);
+        PxaItemDb.event.addListener('[data-usage="close-detail-view"]', 'click', PxaItemDb.filter.removeDetailView);
         template.show();
 
         if (issuuConfigId.length > 0) {
@@ -109,10 +109,10 @@ PxaRecepieDb.filter = {
 
 // Init 
 jQuery(document).ready(function(){
-    jQuery('[data-usage="recipe-list"]').each(function() {
+    jQuery('[data-usage="item-list"]').each(function() {
         var identifier = $(this).data('identifier');
-        recipeLists[identifier] = PxaRecepieDb.filter;
-        PxaRecepieDb.event.addListener('[data-usage="recipe-filter"][data-parent="' + identifier + '"]', 'click', recipeLists[identifier].updateVisibleItems);
-        PxaRecepieDb.event.addListener('[data-usage="recipe-list-item"][data-parent="' + identifier + '"]', 'click', recipeLists[identifier].loadDetail);
+        itemLists[identifier] = PxaItemDb.filter;
+        PxaItemDb.event.addListener('[data-usage="item-filter"][data-parent="' + identifier + '"]', 'click', itemLists[identifier].updateVisibleItems);
+        PxaItemDb.event.addListener('[data-usage="item-list-item"][data-parent="' + identifier + '"]', 'click', itemLists[identifier].loadDetail);
     });
 });

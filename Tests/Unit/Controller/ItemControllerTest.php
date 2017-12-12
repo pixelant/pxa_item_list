@@ -1,5 +1,5 @@
 <?php
-namespace Pixelant\PxaRecipeDb\Tests\Unit\Controller;
+namespace Pixelant\PxaItemList\Tests\Unit\Controller;
 /***************************************************************
  *  Copyright notice
  *
@@ -25,19 +25,19 @@ namespace Pixelant\PxaRecipeDb\Tests\Unit\Controller;
  ***************************************************************/
 
 /**
- * Test case for class Pixelant\PxaRecipeDb\Controller\RecipeController.
+ * Test case for class Pixelant\PxaItemList\Controller\ItemController.
  *
  * @author Pixelant <info@pixelant.se>
  */
-class RecipeControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class ItemControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 
 	/**
-	 * @var \Pixelant\PxaRecipeDb\Controller\RecipeController
+	 * @var \Pixelant\PxaItemList\Controller\ItemController
 	 */
 	protected $subject = NULL;
 
 	public function setUp() {
-		$this->subject = $this->getMock('Pixelant\\PxaRecipeDb\\Controller\\RecipeController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
+		$this->subject = $this->getMock('Pixelant\\PxaItemList\\Controller\\ItemController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
 	}
 
 	public function tearDown() {
@@ -47,16 +47,16 @@ class RecipeControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
-	public function listActionFetchesAllRecipesFromRepositoryAndAssignsThemToView() {
+	public function listActionFetchesAllItemsFromRepositoryAndAssignsThemToView() {
 
-		$allRecipes = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
+		$allItems = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
 
-		$recipeRepository = $this->getMock('Pixelant\\PxaRecipeDb\\Domain\\Repository\\RecipeRepository', array('findAll'), array(), '', FALSE);
-		$recipeRepository->expects($this->once())->method('findAll')->will($this->returnValue($allRecipes));
-		$this->inject($this->subject, 'recipeRepository', $recipeRepository);
+		$itemRepository = $this->getMock('Pixelant\\PxaItemList\\Domain\\Repository\\ItemRepository', array('findAll'), array(), '', FALSE);
+		$itemRepository->expects($this->once())->method('findAll')->will($this->returnValue($allItems));
+		$this->inject($this->subject, 'itemRepository', $itemRepository);
 
 		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
-		$view->expects($this->once())->method('assign')->with('recipes', $allRecipes);
+		$view->expects($this->once())->method('assign')->with('items', $allItems);
 		$this->inject($this->subject, 'view', $view);
 
 		$this->subject->listAction();
@@ -65,13 +65,13 @@ class RecipeControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
-	public function showActionAssignsTheGivenRecipeToView() {
-		$recipe = new \Pixelant\PxaRecipeDb\Domain\Model\Recipe();
+	public function showActionAssignsTheGivenItemToView() {
+		$item = new \Pixelant\PxaItemList\Domain\Model\Item();
 
 		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
 		$this->inject($this->subject, 'view', $view);
-		$view->expects($this->once())->method('assign')->with('recipe', $recipe);
+		$view->expects($this->once())->method('assign')->with('item', $item);
 
-		$this->subject->showAction($recipe);
+		$this->subject->showAction($item);
 	}
 }

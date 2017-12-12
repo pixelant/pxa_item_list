@@ -1,5 +1,5 @@
 <?php
-namespace Pixelant\PxaRecipeDb\Domain\Repository;
+namespace Pixelant\PxaItemList\Domain\Repository;
 
 /***************************************************************
  *
@@ -27,9 +27,9 @@ namespace Pixelant\PxaRecipeDb\Domain\Repository;
  ***************************************************************/
 
 /**
- * The repository for Recipes
+ * The repository for Items
  */
-class RecipeRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class ItemRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	// Order by BE sorting
 	protected $defaultOrderings = array(

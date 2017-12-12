@@ -1,5 +1,5 @@
 <?php
-namespace Pixelant\PxaRecipeDb\Domain\Model;
+namespace Pixelant\PxaItemList\Domain\Model;
 
 /***************************************************************
  *
@@ -27,9 +27,9 @@ namespace Pixelant\PxaRecipeDb\Domain\Model;
  ***************************************************************/
 
 /**
- * Recepie
+ * Item
  */
-class Recipe extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
 	 * Categories
@@ -61,7 +61,7 @@ class Recipe extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $image = NULL;
 
 	/**
-	 * PDF file with recepie
+	 * PDF file
 	 *
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
 	 */

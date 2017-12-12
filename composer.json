@@ -1,18 +1,18 @@
 {
-    "name": "pixelant/pxa-recipe-db",
-    "description": "A simpe recepie plugin, list and detail view",
+    "name": "pixelant/pxa-item-list",
+    "description": "Listing items. Show detail on item click. Filter by categories and attributes.",
     "type": "typo3-cms-extension",
     "license": ["GPL-3.0+"],
-    "keywords": ["TYPO3 Recipe"],
+    "keywords": ["TYPO3 Item List"],
     "version": "1.0.0",
     "autoload": {
         "psr-4": {
-            "Pixelant\\PxaRecipeDb\\": "Classes/"
+            "Pixelant\\PxaItemList\\": "Classes/"
         }
     },
     "replace": {
-        "pxa_recipe_db": "self.version",
-        "pixelant/pxa_recipe_db": "self.version"
+        "pxa_item_list": "self.version",
+        "pixelant/pxa_item_list": "self.version"
     },
     "require": {
         "typo3/cms": ">=6.2.0 <=8.9.99"

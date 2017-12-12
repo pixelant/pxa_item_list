@@ -5,14 +5,14 @@ if (!defined('TYPO3_MODE')) {
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
 	'Pixelant.' . $_EXTKEY,
-	'Recipe',
+	'Item',
 	array(
-		'Recipe' => 'list, show, latest, promotion',
+		'Item' => 'list, show, latest, promotion',
 		
 	),
 	// non-cacheable actions
 	array(
-		'Recipe' => '',
+		'Item' => '',
 		
 	)
 );

@@ -8,13 +8,13 @@
 .. _start:
 
 =============================================================
-Recipe database
+Item database
 =============================================================
 
 .. only:: html
 
 	:Classification:
-		pxa_recipe_db
+		pxa_item_list
 
 	:Version:
 		|release|
@@ -23,7 +23,7 @@ Recipe database
 		en
 
 	:Description:
-		A simpe recepie plugin, list and detail view
+		Listing items. Show detail on item click. Filter by categories and attributes.
 
 	:Keywords:
 		comma,separated,list,of,keywords

@@ -1,5 +1,5 @@
 <?php
-namespace Pixelant\PxaRecipeDb\Controller;
+namespace Pixelant\PxaItemList\Controller;
 
 /***************************************************************
  *
@@ -27,17 +27,17 @@ namespace Pixelant\PxaRecipeDb\Controller;
  ***************************************************************/
 
 /**
- * RecipeController
+ * ItemController
  */
-class RecipeController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
-	 * recipeRepository
+	 * itemRepository
 	 *
-	 * @var \Pixelant\PxaRecipeDb\Domain\Repository\RecipeRepository
+	 * @var \Pixelant\PxaItemList\Domain\Repository\ItemRepository
 	 * @inject
 	 */
-	protected $recipeRepository = NULL;
+	protected $itemRepository = NULL;
 
 	/**
 	 * action list
@@ -47,11 +47,11 @@ class RecipeController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	public function listAction() {
 		if ($this->settings['js']['dontInlcudeInController'] != 1) {
 			$pageRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
-			$pageRenderer->addJsFooterFile('typo3conf/ext/pxa_recipe_db/Resources/Public/Js/pxa_recipe_db.js');
+			$pageRenderer->addJsFooterFile('typo3conf/ext/pxa_item_list/Resources/Public/Js/pxa_item_list.js');
 		}
-		$recipes = $this->recipeRepository->findAll();
-		$this->view->assign('recipes', $recipes);
-		$this->view->assign('filterCategories', $this->getRecipeCategories($recipes));
+		$items = $this->itemRepository->findAll();
+		$this->view->assign('items', $items);
+		$this->view->assign('filterCategories', $this->getItemCategories($items));
 	}
 
 
@@ -63,21 +63,21 @@ class RecipeController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	public function simpleAction() {
 		if ($this->settings['js']['dontInlcudeInController'] != 1) {
 			$pageRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
-			$pageRenderer->addJsFooterFile('typo3conf/ext/pxa_recipe_db/Resources/Public/Js/pxa_recipe_db.js');
+			$pageRenderer->addJsFooterFile('typo3conf/ext/pxa_item_list/Resources/Public/Js/pxa_item_list.js');
 		}
-		$recipes = $this->recipeRepository->findAll();
-		$this->view->assign('recipes', $recipes);
-		$this->view->assign('filterCategories', $this->getRecipeCategories($recipes));
+		$items = $this->itemRepository->findAll();
+		$this->view->assign('items', $items);
+		$this->view->assign('filterCategories', $this->getItemCategories($items));
 	}
 
 	/**
 	 * action show
 	 *
-	 * @param \Pixelant\PxaRecipeDb\Domain\Model\Recipe $recipe
+	 * @param \Pixelant\PxaItemList\Domain\Model\Item $item
 	 * @return void
 	 */
-	public function showAction(\Pixelant\PxaRecipeDb\Domain\Model\Recipe $recipe) {
-		$this->view->assign('recipe', $recipe);
+	public function showAction(\Pixelant\PxaItemList\Domain\Model\Item $item) {
+		$this->view->assign('item', $item);
 	}
 
 	/**
@@ -86,24 +86,24 @@ class RecipeController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function latestAction() {
-		$recipes = $this->recipeRepository->getLatest(3,1);
-		$this->view->assign('recipes', $recipes);
+		$items = $this->itemRepository->getLatest(3,1);
+		$this->view->assign('items', $items);
 	}
 
 	/**
-	 * getRecipeCategories Loops through all recipes and collects categories
+	 * getItemCategories Loops through all items and collects categories
 	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $recipes Recipes to collect used categories from
+	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $items Items to collect used categories from
 	 * @return array           An array of used categories
 	 */
-	private function getRecipeCategories($recipes) {
+	private function getItemCategories($items) {
 		$categories = array();
-		foreach ($recipes as $recipe) {
-			$recipeCategories = $recipe->getCategories();
-			foreach ($recipeCategories as $key => $recipeCategory) {
-				$id = $recipeCategory->getUid();
-				$categories[$id]['title'] = $recipeCategory->getTitle();
-				$categories[$id]['description'] = $recipeCategory->getTitle();
+		foreach ($items as $item) {
+			$itemCategories = $item->getCategories();
+			foreach ($itemCategories as $key => $itemCategory) {
+				$id = $itemCategory->getUid();
+				$categories[$id]['title'] = $itemCategory->getTitle();
+				$categories[$id]['description'] = $itemCategory->getTitle();
 				$categories[$id]['usage']++;
 			}
 		}
@@ -116,8 +116,8 @@ class RecipeController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function promotionAction() {
-		$recipes = $this->recipeRepository->getLatest(1,0);
-		$this->view->assign('recipes', $recipes);
+		$items = $this->itemRepository->getLatest(1,0);
+		$this->view->assign('items', $items);
 	}
 
 }

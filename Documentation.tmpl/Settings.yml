@@ -9,7 +9,7 @@
 ---
 conf.py:
   copyright: 2015
-  project: Recipe database
+  project: Item database
   version: 1.0.0
   release: 1.0.0
   intersphinx_mapping:
@@ -18,8 +18,8 @@ conf.py:
     - null
   latex_documents:
   - - Index
-    - pxa_recipe_db.tex
-    - Recipe database
+    - pxa_item_list.tex
+    - Item database
     - Pixelant
     - manual
   latex_elements:

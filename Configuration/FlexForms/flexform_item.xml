@@ -15,19 +15,19 @@
 								<items>
 									<numIndex index="0">
 										<numIndex index="0">List and Detail</numIndex>
-										<numIndex index="1">Recipe->list;Recipe->show</numIndex>
+										<numIndex index="1">Item->list;Item->show</numIndex>
 									</numIndex>
 									<numIndex index="1">
 										<numIndex index="0">Latest</numIndex>
-										<numIndex index="1">Recipe->latest</numIndex>
+										<numIndex index="1">Item->latest</numIndex>
 									</numIndex>
 									<numIndex index="2">
 										<numIndex index="0">Promotion</numIndex>
-										<numIndex index="1">Recipe->promotion</numIndex>
+										<numIndex index="1">Item->promotion</numIndex>
 									</numIndex>
 									<numIndex index="3">
 										<numIndex index="0">Simple list</numIndex>
-										<numIndex index="1">Recipe->simple</numIndex>
+										<numIndex index="1">Item->simple</numIndex>
 									</numIndex>
 								</items>
 							</config>
@@ -36,7 +36,7 @@
 					<settings.detailPid>
 						<TCEforms>
 							<label>LLL:EXT:news/Resources/Private/Language/locallang_be.xlf:flexforms.detailPid</label>
-							<displayCond>FIELD:switchableControllerActions:IN:Recipe->latest,Recipe->promotion</displayCond>
+							<displayCond>FIELD:switchableControllerActions:IN:Item->latest,Item->promotion</displayCond>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>

@@ -1,16 +1,16 @@
 
-plugin.tx_pxarecipedb_recipe {
+plugin.tx_pxaitemlist_item {
 	view {
-		templateRootPath = {$plugin.tx_pxarecipedb_recipe.view.templateRootPath}
-		partialRootPath = {$plugin.tx_pxarecipedb_recipe.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_pxarecipedb_recipe.view.layoutRootPath}
+		templateRootPath = {$plugin.tx_pxaitemlist_item.view.templateRootPath}
+		partialRootPath = {$plugin.tx_pxaitemlist_item.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_pxaitemlist_item.view.layoutRootPath}
 	}
 	persistence {
-		storagePid = {$plugin.tx_pxarecipedb_recipe.persistence.storagePid}
+		storagePid = {$plugin.tx_pxaitemlist_item.persistence.storagePid}
 	}
 }
 
-plugin.tx_pxarecipedb._CSS_DEFAULT_STYLE (
+plugin.tx_pxaitemlist._CSS_DEFAULT_STYLE (
 	textarea.f3-form-error {
 		background-color:#FF9F9F;
 		border: 1px #FF0000 solid;
@@ -21,16 +21,16 @@ plugin.tx_pxarecipedb._CSS_DEFAULT_STYLE (
 		border: 1px #FF0000 solid;
 	}
 
-	.tx-pxa-recipe-db table {
+	.tx-pxa-item-list table {
 		border-collapse:separate;
 		border-spacing:10px;
 	}
 
-	.tx-pxa-recipe-db table th {
+	.tx-pxa-item-list table th {
 		font-weight:bold;
 	}
 
-	.tx-pxa-recipe-db table td {
+	.tx-pxa-item-list table td {
 		vertical-align:top;
 	}
 
@@ -45,20 +45,20 @@ plugin.tx_pxarecipedb._CSS_DEFAULT_STYLE (
 )
 
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
-plugin.tx_pxarecipedb._CSS_DEFAULT_STYLE >
-plugin.tx_pxarecipedb_recipe {
+plugin.tx_pxaitemlist._CSS_DEFAULT_STYLE >
+plugin.tx_pxaitemlist_item {
     # Remove persistence setting so extbase will use recode page from content element
     persistence >
     view >
     view {
         templateRootPaths {
-            default = {$plugin.tx_pxarecipedb_recipe.view.templateRootPath}
+            default = {$plugin.tx_pxaitemlist_item.view.templateRootPath}
         }
         partialRootPaths {
-            default = {$plugin.tx_pxarecipedb_recipe.view.partialRootPath}
+            default = {$plugin.tx_pxaitemlist_item.view.partialRootPath}
         }
         layoutRootPaths {
-            default = {$plugin.tx_pxarecipedb_recipe.view.layoutRootPath}
+            default = {$plugin.tx_pxaitemlist_item.view.layoutRootPath}
         }
     }
     settings {
@@ -82,7 +82,7 @@ plugin.tx_pxarecipedb_recipe {
                 image {
                     width = 300c
                     height = 300c
-                    no-image = EXT:pxa_recipe_db/Resources/Public/Images/no-image.png
+                    no-image = EXT:pxa_item_list/Resources/Public/Images/no-image.png
                 }
                 class = item col-md-3 col-sm-6 col-xs-12
             }
@@ -92,7 +92,7 @@ plugin.tx_pxarecipedb_recipe {
                 image {
                     width = 360c
                     height = 575c
-                    no-image = EXT:pxa_recipe_db/Resources/Public/Images/no-image.png
+                    no-image = EXT:pxa_item_list/Resources/Public/Images/no-image.png
                 }
             }
         }
@@ -102,7 +102,7 @@ plugin.tx_pxarecipedb_recipe {
                 image {
                     width = 300c
                     height = 300c
-                    no-image = EXT:pxa_recipe_db/Resources/Public/Images/no-image.png
+                    no-image = EXT:pxa_item_list/Resources/Public/Images/no-image.png
                 }
                 class = item col-md-3 col-sm-6 col-xs-12
             }

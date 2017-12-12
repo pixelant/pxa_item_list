@@ -1,7 +1,7 @@
 <?php
 return array(
 	'ctrl' => array(
-		'title'	=> 'LLL:EXT:pxa_recipe_db/Resources/Private/Language/locallang_db.xlf:tx_pxarecipedb_domain_model_recipe',
+		'title'	=> 'LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:tx_pxaitemlist_domain_model_item',
 		'label' => 'name',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
@@ -20,7 +20,7 @@ return array(
 			'endtime' => 'endtime',
 		),
 		'searchFields' => 'name,description,image,pdf,issuu_config_id,date,',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('pxa_recipe_db') . 'Resources/Public/Icons/tx_pxarecipedb_domain_model_recipe.gif'
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('pxa_item_list') . 'Resources/Public/Icons/tx_pxaitemlist_domain_model_item.gif'
 	),
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description, image, pdf, issuu_config_id, date',
@@ -55,8 +55,8 @@ return array(
 				'items' => array(
 					array('', 0),
 				),
-				'foreign_table' => 'tx_pxarecipedb_domain_model_recipe',
-				'foreign_table_where' => 'AND tx_pxarecipedb_domain_model_recipe.pid=###CURRENT_PID### AND tx_pxarecipedb_domain_model_recipe.sys_language_uid IN (-1,0)',
+				'foreign_table' => 'tx_pxaitemlist_domain_model_item',
+				'foreign_table_where' => 'AND tx_pxaitemlist_domain_model_item.pid=###CURRENT_PID### AND tx_pxaitemlist_domain_model_item.sys_language_uid IN (-1,0)',
 			),
 		),
 		'l10n_diffsource' => array(
@@ -116,7 +116,7 @@ return array(
 
 		'name' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:pxa_recipe_db/Resources/Private/Language/locallang_db.xlf:tx_pxarecipedb_domain_model_recipe.name',
+			'label' => 'LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:tx_pxaitemlist_domain_model_item.name',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -125,7 +125,7 @@ return array(
 		),
 		'description' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:pxa_recipe_db/Resources/Private/Language/locallang_db.xlf:tx_pxarecipedb_domain_model_recipe.description',
+			'label' => 'LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:tx_pxaitemlist_domain_model_item.description',
 			'config' => array(
 				'type' => 'text',
 				'cols' => 40,
@@ -135,7 +135,7 @@ return array(
 		),
 		'image' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:pxa_recipe_db/Resources/Private/Language/locallang_db.xlf:tx_pxarecipedb_domain_model_recipe.image',
+			'label' => 'LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:tx_pxaitemlist_domain_model_item.image',
 			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
 				'image',
 				array(
@@ -181,7 +181,7 @@ return array(
 		),
 		'pdf' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:pxa_recipe_db/Resources/Private/Language/locallang_db.xlf:tx_pxarecipedb_domain_model_recipe.pdf',
+			'label' => 'LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:tx_pxaitemlist_domain_model_item.pdf',
 			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
 				'pdf',
 				array(
@@ -226,7 +226,7 @@ return array(
 		),
 		'issuu_config_id' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:pxa_recipe_db/Resources/Private/Language/locallang_db.xlf:tx_pxarecipedb_domain_model_recipe.issuu_config_id',
+			'label' => 'LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:tx_pxaitemlist_domain_model_item.issuu_config_id',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -235,7 +235,7 @@ return array(
 		),
 		'date' => array(
 			'exclude' => 0,
-			'label' => 'LLL:EXT:pxa_recipe_db/Resources/Private/Language/locallang_db.xlf:tx_pxarecipedb_domain_model_recipe.date',
+			'label' => 'LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:tx_pxaitemlist_domain_model_item.date',
 			'config' => array(
 				'type' => 'input',
 				'size' => 7,

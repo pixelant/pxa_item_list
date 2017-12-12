@@ -1,15 +1,15 @@
 
-plugin.tx_pxarecipedb_recipe {
+plugin.tx_pxaitemlist_item {
 	view {
-		# cat=plugin.tx_pxarecipedb_recipe/file; type=string; label=Path to template root (FE)
-		templateRootPath = EXT:pxa_recipe_db/Resources/Private/Templates/
-		# cat=plugin.tx_pxarecipedb_recipe/file; type=string; label=Path to template partials (FE)
-		partialRootPath = EXT:pxa_recipe_db/Resources/Private/Partials/
-		# cat=plugin.tx_pxarecipedb_recipe/file; type=string; label=Path to template layouts (FE)
-		layoutRootPath = EXT:pxa_recipe_db/Resources/Private/Layouts/
+		# cat=plugin.tx_pxaitemlist_item/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:pxa_item_list/Resources/Private/Templates/
+		# cat=plugin.tx_pxaitemlist_item/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:pxa_item_list/Resources/Private/Partials/
+		# cat=plugin.tx_pxaitemlist_item/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:pxa_item_list/Resources/Private/Layouts/
 	}
 	persistence {
-		# cat=plugin.tx_pxarecipedb_recipe//a; type=string; label=Default storage PID
+		# cat=plugin.tx_pxaitemlist_item//a; type=string; label=Default storage PID
 		storagePid =
 	}
 }

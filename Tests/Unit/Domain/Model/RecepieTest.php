@@ -1,6 +1,6 @@
 <?php
 
-namespace Pixelant\PxaRecipeDb\Tests\Unit\Domain\Model;
+namespace Pixelant\PxaItemList\Tests\Unit\Domain\Model;
 
 /***************************************************************
  *  Copyright notice
@@ -27,21 +27,21 @@ namespace Pixelant\PxaRecipeDb\Tests\Unit\Domain\Model;
  ***************************************************************/
 
 /**
- * Test case for class \Pixelant\PxaRecipeDb\Domain\Model\Recepie.
+ * Test case for class \Pixelant\PxaItemList\Domain\Model\Item.
  *
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  * @author Pixelant <info@pixelant.se>
  */
-class RecepieTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class ItemTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
-	 * @var \Pixelant\PxaRecipeDb\Domain\Model\Recepie
+	 * @var \Pixelant\PxaItemList\Domain\Model\Item
 	 */
 	protected $subject = NULL;
 
 	public function setUp() {
-		$this->subject = new \Pixelant\PxaRecipeDb\Domain\Model\Recepie();
+		$this->subject = new \Pixelant\PxaItemList\Domain\Model\Item();
 	}
 
 	public function tearDown() {

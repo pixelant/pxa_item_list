@@ -1,7 +1,7 @@
 #
-# Table structure for table 'tx_pxarecipedb_domain_model_recipe'
+# Table structure for table 'tx_pxaitemlist_domain_model_item'
 #
-CREATE TABLE tx_pxarecipedb_domain_model_recipe (
+CREATE TABLE tx_pxaitemlist_domain_model_item (
 
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
@@ -43,9 +43,9 @@ CREATE TABLE tx_pxarecipedb_domain_model_recipe (
 );
 
 #
-# Table structure for table 'tx_pxarecipedb_domain_model_recipe'
+# Table structure for table 'tx_pxaitemlist_domain_model_item'
 #
-CREATE TABLE tx_pxarecipedb_domain_model_recipe (
+CREATE TABLE tx_pxaitemlist_domain_model_item (
 	categories int(11) unsigned DEFAULT '0' NOT NULL,
 );
 

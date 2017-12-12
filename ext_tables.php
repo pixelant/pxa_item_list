@@ -5,21 +5,21 @@ if (!defined('TYPO3_MODE')) {
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
 	'Pixelant.' . $_EXTKEY,
-	'Recipe',
-	'Recipe'
+	'Item',
+	'Item'
 );
 
-$pluginSignature = str_replace('_','',$_EXTKEY) . '_recipe';
+$pluginSignature = str_replace('_','',$_EXTKEY) . '_item';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_recipe.xml');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_item.xml');
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Recipe database');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Item database');
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_pxarecipedb_domain_model_recipe', 'EXT:pxa_recipe_db/Resources/Private/Language/locallang_csh_tx_pxarecipedb_domain_model_recipe.xlf');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_pxarecipedb_domain_model_recipe');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_pxaitemlist_domain_model_item', 'EXT:pxa_item_list/Resources/Private/Language/locallang_csh_tx_pxaitemlist_domain_model_item.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_pxaitemlist_domain_model_item');
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::makeCategorizable(
     $_EXTKEY,
-    'tx_pxarecipedb_domain_model_recipe'
+    'tx_pxaitemlist_domain_model_item'
 );
 ## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder

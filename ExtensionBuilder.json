@@ -20,14 +20,14 @@
                         "promotion"
                     ]
                 },
-                "name": "Recipe",
+                "name": "Item",
                 "objectsettings": {
                     "addDeletedField": true,
                     "addHiddenField": true,
                     "addStarttimeEndtimeFields": true,
                     "aggregateRoot": true,
                     "categorizable": true,
-                    "description": "Recepie",
+                    "description": "Item",
                     "mapToTable": "",
                     "parentClass": "",
                     "sorting": false,
@@ -69,7 +69,7 @@
                         {
                             "allowedFileTypes": "",
                             "maxItems": "1",
-                            "propertyDescription": "PDF file with recepie",
+                            "propertyDescription": "PDF file",
                             "propertyIsExcludeField": false,
                             "propertyIsRequired": false,
                             "propertyName": "pdf",
@@ -110,7 +110,7 @@
         "backendModules": [
 
         ],
-        "description": "A simpe recepie plugin, list and detail view",
+        "description": "Listing items. Show detail on item click. Filter by categories and attributes.",
         "emConf": {
             "category": "plugin",
             "custom_category": "",
@@ -122,9 +122,9 @@
             "state": "alpha",
             "version": "1.0.0"
         },
-        "extensionKey": "pxa_recipe_db",
-        "name": "Recipe database",
-        "originalExtensionKey": "pxa_recipe_db",
+        "extensionKey": "pxa_item_list",
+        "name": "Item database",
+        "originalExtensionKey": "pxa_item_list",
         "persons": [
             {
                 "company": "Pixelant AB",
@@ -136,12 +136,12 @@
         "plugins": [
             {
                 "actions": {
-                    "controllerActionCombinations": "Recipe => list, show, latest, promotion",
+                    "controllerActionCombinations": "Item => list, show, latest, promotion",
                     "noncacheableActions": "",
-                    "switchableActions": "List and Detail\nRecipe->list; Recipe->show;\nLatest\nRecipe->latest;\nPromotion\nRecipe->promotion;"
+                    "switchableActions": "List and Detail\nItem->list; Item->show;\nLatest\nItem->latest;\nPromotion\nItem->promotion;"
                 },
-                "key": "recipe",
-                "name": "Recipe"
+                "key": "item",
+                "name": "Item"
             }
         ],
         "vendorName": "Pixelant"

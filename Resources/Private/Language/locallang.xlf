@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2015-11-30T10:12:00Z" product-name="pxa_recipe_db">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-11-30T10:12:00Z" product-name="pxa_item_list">
 		<header/>
 		<body>
-			<trans-unit id="tx_pxarecipedb_domain_model_recipe">
-				<source>Recipe</source>
+			<trans-unit id="tx_pxaitemlist_domain_model_item">
+				<source>Item</source>
 			</trans-unit>
-			<trans-unit id="tx_pxarecipedb_domain_model_recipe.name">
+			<trans-unit id="tx_pxaitemlist_domain_model_item.name">
 				<source>Name</source>
 			</trans-unit>
-			<trans-unit id="tx_pxarecipedb_domain_model_recipe.description">
+			<trans-unit id="tx_pxaitemlist_domain_model_item.description">
 				<source>Description</source>
 			</trans-unit>
-			<trans-unit id="tx_pxarecipedb_domain_model_recipe.image">
+			<trans-unit id="tx_pxaitemlist_domain_model_item.image">
 				<source>Image</source>
 			</trans-unit>
-			<trans-unit id="tx_pxarecipedb_domain_model_recipe.pdf">
+			<trans-unit id="tx_pxaitemlist_domain_model_item.pdf">
 				<source>Pdf</source>
 			</trans-unit>
-			<trans-unit id="tx_pxarecipedb_domain_model_recipe.issuu_config_id">
+			<trans-unit id="tx_pxaitemlist_domain_model_item.issuu_config_id">
 				<source>Issuu Config Id</source>
 			</trans-unit>
-			<trans-unit id="tx_pxarecipedb_domain_model_recipe.date">
+			<trans-unit id="tx_pxaitemlist_domain_model_item.date">
 				<source>Date</source>
 			</trans-unit>
-			<trans-unit id="label.recipeCategories">
-				<source>Recipe-categories</source>
+			<trans-unit id="label.itemCategories">
+				<source>Item-categories</source>
 			</trans-unit>
 			<trans-unit id="label.download">
 				<source>Download</source>
@@ -40,7 +40,7 @@
 				<source>Category</source>
 			</trans-unit>
 			<trans-unit id="label.backToList">
-				<source>All recipes</source>
+				<source>All items</source>
 			</trans-unit>
 		</body>
 	</file>
