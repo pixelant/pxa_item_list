@@ -123,7 +123,7 @@
             "version": "1.0.0"
         },
         "extensionKey": "pxa_item_list",
-        "name": "Item database",
+        "name": "Item list",
         "originalExtensionKey": "pxa_item_list",
         "persons": [
             {

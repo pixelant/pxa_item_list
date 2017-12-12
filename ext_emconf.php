@@ -11,7 +11,7 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'Item database',
+	'title' => 'Item list',
 	'description' => 'Listing items. Show detail on item click. Filter by categories and attributes.',
 	'category' => 'plugin',
 	'author' => 'Pixelant',

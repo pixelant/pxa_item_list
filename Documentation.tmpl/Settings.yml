@@ -9,7 +9,7 @@
 ---
 conf.py:
   copyright: 2015
-  project: Item database
+  project: Item list
   version: 1.0.0
   release: 1.0.0
   intersphinx_mapping:
@@ -19,7 +19,7 @@ conf.py:
   latex_documents:
   - - Index
     - pxa_item_list.tex
-    - Item database
+    - Item list
     - Pixelant
     - manual
   latex_elements:
