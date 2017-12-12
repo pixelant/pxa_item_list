@@ -15,6 +15,6 @@
         "pixelant/pxa_item_list": "self.version"
     },
     "require": {
-        "typo3/cms": ">=6.2.0 <=8.9.99"
+        "typo3/cms": ">=8.7.0 <=8.7.99"
     }
 }

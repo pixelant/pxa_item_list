@@ -1,0 +1,21 @@
+
+# Exclude PHPStorm indexing files
+/.idea
+
+# Exclude OSX index files
+.DS_Store
+
+# Composer
+/.Build/*
+composer.lock
+
+# Node packages.
+/node_modules
+
+# NPM
+npm-debug.log
+
+index.php
+typo3
+typo3_src
+vendor
