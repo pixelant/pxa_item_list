@@ -1,64 +1,14 @@
-
 <f:layout name="Default" />
 
-This Template is responsible for creating a table of domain objects.
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        List.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
 <f:section name="main">
+    <f:render partial="Item/CategoryFilter" arguments="{settings: settings, filterCategories: filterCategories}" />
+    <f:render partial="Item/ListItem" arguments="{items: items, settings: settings}" />
 
-<f:flashMessages/>
+    <div class="go-top text-center">
+        <a href="javascript:{}" class="btn btn-default text-center">
+            <f:translate key="label.go_top" />
+        </a>
+    </div>
 
-<f:if condition="{filterCategories}">
-	<div class="item-category {settings.filter.class}" data-parent="ItemListList" data-usage="filter-container" data-filter-class="{settings.filter.classFilter}" data-filter-class-active="{settings.filter.classFilterActive}">
-		<ul class="item-category__list list-inline">
-			<li><h3 class="item-category__header"><f:translate key="label.itemCategories" /></h3></li>
-			<li class="item-category__item"><a href="#" class="item-category__item-link btn {settings.filter.classFilterActive}" data-usage="item-filter" data-filter="*" data-parent="ItemListList"><f:translate key="label.showAll" /></a>
-				</li>
-			<f:for each="{filterCategories}" key="categoryId" as="filterCategory">
-				<li class="item-category__item">
-					<a href="#" class="item-category__item-link btn {settings.filter.classFilter}" title="{filterCategory.title} ({filterCategory.usage})" data-usage="item-filter" data-filter="category-filter-{categoryId}" data-parent="ItemListList">{filterCategory.title}</a>
-				</li>
-			</f:for>
-		</ul>
-	</div>
-</f:if>
-
-<div class="item-item-list {settings.list.class}" data-usage="item-list" data-identifier="ItemListList">
-	<f:for each="{items}" as="item">
-		<f:render partial="Item/ListItem" arguments="{item: item, settings: settings}" />
-	</f:for>
-</div>
-<div style="display:none;">
-	<div id="show-item-template" class="item-item-detail col-xs-12">
-		<div class="item-item-detail__wrp">
-		<div class="row">
-			<div class="col-sm-6 item-item-detail__media">
-				<div data-configid="#" class="item-item-detail__media-item" data-usage="template-embed"></div>
-			</div>
-			<div class="col-sm-6 item-item-detail__body">
-				<a class="item-item-detail__body-close-btn close-detail-view" href="#" data-usage="close-detail-view"></a>
-				<div class="item-item-detail__body-info-wrp">
-					<h4 class="item-item-detail__body-category-header" data-usage="template-category"></h4>
-					<h3 class="item-item-detail__body-name" data-usage="template-name"></h3>
-					<p class="item-item-detail__body-label"><f:translate key="label.description" /></p>
-					<p class="item-item-detail__body-description" data-usage="template-description"></p>
-					<p class="item-item-detail__body-label"><f:translate key="label.category" /></p>
-					<p class="item-item-detail__body-category" data-usage="template-category"></p>
-					<a data-usage="template-pdf" href="#" target="_blank" class="item-item-detail__body-btn btn btn-default"><f:translate key="label.download" /></a>
-				</div>
-			</div>
-		</div>
-		</div>
-	</div>
-</div>
-<script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>
-
+    <f:render partial="Item/PreviewTemplate" arguments="{settings: settings}" />
 </f:section>

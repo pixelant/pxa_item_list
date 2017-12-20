@@ -26,6 +26,8 @@ namespace Pixelant\PxaItemList\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * ItemController
  */
@@ -39,6 +41,14 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 */
 	protected $itemRepository = NULL;
 
+    /**
+     * categoryRepository
+     *
+     * @var \TYPO3\CMS\Extbase\Domain\Repository\CategoryRepository
+     * @inject
+     */
+    protected $categoryRepository = NULL;
+
 	/**
 	 * action list
 	 *
@@ -46,48 +56,14 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 */
 	public function listAction() {
 		if ($this->settings['js']['dontInlcudeInController'] != 1) {
-			$pageRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
+			$pageRenderer = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
+			$pageRenderer->addJsFooterFile('typo3conf/ext/pxa_item_list/Resources/Public/Js/pxa_filtering.js');
 			$pageRenderer->addJsFooterFile('typo3conf/ext/pxa_item_list/Resources/Public/Js/pxa_item_list.js');
 		}
 		$items = $this->itemRepository->findAll();
+
 		$this->view->assign('items', $items);
-		$this->view->assign('filterCategories', $this->getItemCategories($items));
-	}
-
-
-	/**
-	 * action simple list
-	 *
-	 * @return void
-	 */
-	public function simpleAction() {
-		if ($this->settings['js']['dontInlcudeInController'] != 1) {
-			$pageRenderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
-			$pageRenderer->addJsFooterFile('typo3conf/ext/pxa_item_list/Resources/Public/Js/pxa_item_list.js');
-		}
-		$items = $this->itemRepository->findAll();
-		$this->view->assign('items', $items);
-		$this->view->assign('filterCategories', $this->getItemCategories($items));
-	}
-
-	/**
-	 * action show
-	 *
-	 * @param \Pixelant\PxaItemList\Domain\Model\Item $item
-	 * @return void
-	 */
-	public function showAction(\Pixelant\PxaItemList\Domain\Model\Item $item) {
-		$this->view->assign('item', $item);
-	}
-
-	/**
-	 * action latest
-	 *
-	 * @return void
-	 */
-	public function latestAction() {
-		$items = $this->itemRepository->getLatest(3,1);
-		$this->view->assign('items', $items);
+		$this->view->assign('filterCategories', $this->getFilterCategories($items));
 	}
 
 	/**
@@ -96,28 +72,54 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 	 * @param \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $items Items to collect used categories from
 	 * @return array           An array of used categories
 	 */
-	private function getItemCategories($items) {
-		$categories = array();
+	private function getItemCategories($items, $subCategories) {
+		$itemCategories = array();
 		foreach ($items as $item) {
-			$itemCategories = $item->getCategories();
-			foreach ($itemCategories as $key => $itemCategory) {
-				$id = $itemCategory->getUid();
-				$categories[$id]['title'] = $itemCategory->getTitle();
-				$categories[$id]['description'] = $itemCategory->getTitle();
-				$categories[$id]['usage']++;
+			foreach ($subCategories as $subCategory) {
+				foreach ($item->getCategories() as $category) {
+					$title = $subCategory->getTitle();
+					if ($title === $category->getTitle()) {
+						if (!in_array($itemCategories)) {
+							$itemCategories[$title] = $subCategory;
+						}
+					}
+				}
 			}
 		}
-		return $categories;
+
+		return $itemCategories;
 	}
 
-	/**
-	 * action promotion
-	 *
-	 * @return void
-	 */
-	public function promotionAction() {
-		$items = $this->itemRepository->getLatest(1,0);
-		$this->view->assign('items', $items);
-	}
+    /**
+     * getItemCategories Loops through all items and collects categories
+     *
+     * @return array An array of used categories
+     */
+	private function getFilterCategories($items) {
+		$categoryColumns = intval($this->settings['filter']['categoryColumns']);
+		$filterCategories = [];
 
+		$filterCategories[1]['category'] = $this->categoryRepository->findByUid($this->settings['filterCategory1']);
+		$subCategories = $this->categoryRepository->findByParent($this->settings['filterCategory1']);
+		$subCategoriesCount = count($subCategories);
+		$filterCategories[1]['subCategories'] = $subCategories;
+		// filter out categories bot in any itemscol-md-12
+		$filterCategories[1]['subCategories'] = $this->getItemCategories($items, $filterCategories[1]['subCategories']);
+		if ($subCategoriesCount > 12/$categoryColumns) {
+			$filterCategories[1]['maxColumnItem'] = $subCategoriesCount % $categoryColumns === 0 ? $subCategoriesCount/$categoryColumns : intval($subCategoriesCount / $categoryColumns) + 1;
+		}
+
+
+		$filterCategories[2]['category'] = $this->categoryRepository->findByUid($this->settings['filterCategory2']);
+		$subCategories = $this->categoryRepository->findByParent($this->settings['filterCategory2']);
+		$filterCategories[2]['subCategories'] = $subCategories;
+		// filter out categories bot in any items
+		$filterCategories[2]['subCategories'] = $this->getItemCategories($items, $filterCategories[2]['subCategories']);
+		$subCategoriesCount = count($subCategories);
+		if ($subCategoriesCount > 12/$categoryColumns) {
+			$filterCategories[2]['maxColumnItem'] = $subCategoriesCount % $categoryColumns === 0 ? $subCategoriesCount / $categoryColumns : intval($subCategoriesCount / $categoryColumns) + 1;
+		}
+
+		return $filterCategories;
+	}
 }

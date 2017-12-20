@@ -74,6 +74,144 @@ class ItemTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
+	public function getYearReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
+			$this->subject->getYear()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setYearForStringSetsYear() {
+		$this->subject->setYear(1999);
+
+		$this->assertAttributeEquals(
+			1999,
+			'year',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getCustomerReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
+			$this->subject->getCustomer()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setCustomerForStringSetsCustomer() {
+		$this->subject->setCustomer('Conceived at T3CON10');
+
+		$this->assertAttributeEquals(
+			'Conceived at T3CON10',
+			'customer',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getProductChoiceReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
+			$this->subject->getProductChoice()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setProductChoiceForStringSetsProductChoice() {
+		$this->subject->setProductChoice('Conceived at T3CON10');
+
+		$this->assertAttributeEquals(
+			'Conceived at T3CON10',
+			'productChoice',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getArchitectReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
+			$this->subject->getArchitect()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setArchitectForStringSetsArchitect() {
+		$this->subject->setArchitect('Conceived at T3CON10');
+
+		$this->assertAttributeEquals(
+			'Conceived at T3CON10',
+			'architect',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getConsultantReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
+			$this->subject->getConsultant()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setConsultantForStringSetsConsultant() {
+		$this->subject->setConsultant('Conceived at T3CON10');
+
+		$this->assertAttributeEquals(
+			'Conceived at T3CON10',
+			'consultant',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getInstallerReturnsInitialValueForString() {
+		$this->assertSame(
+			'',
+			$this->subject->getInstaller()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function setInstallerForStringSetsInstaller() {
+		$this->subject->setInstaller('Conceived at T3CON10');
+
+		$this->assertAttributeEquals(
+			'Conceived at T3CON10',
+			'installer',
+			$this->subject
+		);
+	}
+
+	/**
+	 * @test
+	 */
 	public function getDescriptionReturnsInitialValueForString() {
 		$this->assertSame(
 			'',
@@ -138,29 +276,6 @@ class ItemTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->assertAttributeEquals(
 			$fileReferenceFixture,
 			'pdf',
-			$this->subject
-		);
-	}
-
-	/**
-	 * @test
-	 */
-	public function getIssuuConfigIdReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getIssuuConfigId()
-		);
-	}
-
-	/**
-	 * @test
-	 */
-	public function setIssuuConfigIdForStringSetsIssuuConfigId() {
-		$this->subject->setIssuuConfigId('Conceived at T3CON10');
-
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'issuuConfigId',
 			$this->subject
 		);
 	}

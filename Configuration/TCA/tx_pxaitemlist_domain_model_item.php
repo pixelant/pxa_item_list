@@ -19,20 +19,19 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'name,description,image,pdf,issuu_config_id,date,',
+		'searchFields' => 'name,year,customer,product_choice,architect,consultant,installer,description,image,pdf,date,',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('pxa_item_list') . 'Resources/Public/Icons/tx_pxaitemlist_domain_model_item.gif'
 	),
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, description, image, pdf, issuu_config_id, date',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, year, customer, product_choice, architect, consultant, installer, description, image, pdf, date',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, description, image, pdf, issuu_config_id, date, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, year, customer, product_choice, architect, consultant, installer, description, image, pdf, date, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
 	),
 	'columns' => array(
-	
 		'sys_language_uid' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
@@ -64,7 +63,6 @@ return array(
 				'type' => 'passthrough',
 			),
 		),
-
 		't3ver_label' => array(
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.versionLabel',
 			'config' => array(
@@ -73,7 +71,6 @@ return array(
 				'max' => 255,
 			)
 		),
-	
 		'hidden' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
@@ -113,7 +110,6 @@ return array(
 				),
 			),
 		),
-
 		'name' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:tx_pxaitemlist_domain_model_item.name',
@@ -123,6 +119,62 @@ return array(
 				'eval' => 'trim,required'
 			),
 		),
+		'year' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:tx_pxaitemlist_domain_model_item.year',
+			'config' => array(
+				'type' => 'input',
+				'size' => 5,
+				'eval' => 'year,required'
+			),
+		),
+		'customer' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:tx_pxaitemlist_domain_model_item.customer',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim,required'
+			),
+		),
+		'architect' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:tx_pxaitemlist_domain_model_item.architect',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'default' => '',
+				'eval' => 'trim'
+			),
+		),
+		'product_choice' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:tx_pxaitemlist_domain_model_item.product_choice',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim,required'
+			),
+		),
+		'consultant' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:tx_pxaitemlist_domain_model_item.consultant',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'default' => '',
+				'eval' => 'trim'
+			),
+		),
+		'installer' => array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:tx_pxaitemlist_domain_model_item.installer',
+			'config' => array(
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim'
+			),
+		),
 		'description' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:tx_pxaitemlist_domain_model_item.description',
@@ -130,7 +182,7 @@ return array(
 				'type' => 'text',
 				'cols' => 40,
 				'rows' => 15,
-				'eval' => 'trim'
+				'eval' => 'trim,required'
 			)
 		),
 		'image' => array(
@@ -174,7 +226,8 @@ return array(
 							--palette--;;filePalette'
 						)
 					),
-					'maxitems' => 1
+					'maxitems' => 1,
+					'eval' => 'required'
 				),
 				$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
 			),
@@ -224,15 +277,6 @@ return array(
 				)
 			),
 		),
-		'issuu_config_id' => array(
-			'exclude' => 0,
-			'label' => 'LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:tx_pxaitemlist_domain_model_item.issuu_config_id',
-			'config' => array(
-				'type' => 'input',
-				'size' => 30,
-				'eval' => 'trim'
-			),
-		),
 		'date' => array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:tx_pxaitemlist_domain_model_item.date',
@@ -244,6 +288,5 @@ return array(
 				'default' => time()
 			),
 		),
-		
 	),
 );## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder

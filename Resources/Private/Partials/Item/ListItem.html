@@ -1,32 +1,64 @@
-<div class="item-item {settings.list.item.class} {f:render(partial: 'Item/CategoryClasses', arguments: '{categories: item.categories}')}"
-	data-usage="item-list-item"
-	data-parent="ItemListList"
-	data-name="{item.name}"
-	data-description="{item.description}"
-	data-pdf-public-url="{item.pdf.originalResource.publicUrl}"
-	data-issuu-config-id="{item.issuuConfigId}"
-	data-category="{f:render(partial: 'Item/CategoryNames', arguments: '{categories: item.categories}')}"
-	data-image-public-url="{f:render(partial: 'Item/ListItemLargeImageUrl', arguments: '{item: item}')}"
-	>
-
-	<div class="item-item__wrp">
-		<div class="item-item__item-img-wrp">
-			<f:if condition="{item.image}">
-				<f:then>
-					<f:image src="{item.image.uid}" treatIdAsReference="1" alt="{item.image.originalResource.title}" class="item-item__img img-responsive" width="{settings.list.item.image.width}" height="{settings.list.item.image.height}" />
-				</f:then>
-				<f:else>
-					<f:image src="{settings.list.item.image.no-image}" alt="{item.image.originalResource.title}" class="img-responsive item-item__img" width="{settings.list.item.image.width}" height="{settings.list.item.image.height}" />
-				</f:else>
-			</f:if>
+<div id="items-list"
+	class="row {settings.list.wrapperClass}"
+	data-scroll-fix="{settings.scrollFix}"
+	data-detail-small-desktop-preview-height-fix="{settings.detail.smallDesktopPreviewHeightFix}"
+	data-detail-small-mobile-preview-height-fix="{settings.detail.smallMobilePreviewHeightFix}"
+	data-detail-desktop-height="{settings.detail.heightDesktop}"
+	data-detail-mobile-height="{settings.detail.heightMobile}">
+	<f:for each="{items}" as="item" iteration="i">
+		<div class="short-info {settings.list.item.class}" data-categories="{item.categoriesUidList}">
+			<div id="item-item-{item.uid}" class="item-item"
+				data-count="{i.cycle}" data-uid="{item.uid}"
+				data-name="{item.name}"
+				data-customer="{item.customer}"
+				data-product_choice="{item.productChoice}"
+				data-architect="{item.architect}"
+				data-consultant="{item.consultant}"
+				data-installer="{item.installer}"
+				data-categories="{item.categoriesTitleList}"
+				data-description="{item.description}"
+				data-image="{f:render(partial: 'Item/ListItemLargeImageUrl', arguments: '{item: item}')}">
+				<div class="item-short-info text-center">
+					<div class="image-mask">
+						<f:render section="imagePreview" arguments="{item: item}" />
+					</div>
+					<div class="text-center">
+						<h4>{item.name}</h4>
+						<h5>{item.categoriesTitleList}</h5>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="item-item__info">
-			<f:if condition="{item.categories}">
-				<p class="item-item__cat"><f:for each="{item.categories}" as="category">{category.title} </f:for></p>
-			</f:if>
-			<f:if condition="{item.name}">
-				<h4 class="item-item__name">{item.name}</h4>
-			</f:if>
-		</div>
-	</div>
+	</f:for>
 </div>
+<!--For some reason inline condition doesn't work, need to create section with normal IF-->
+<f:section name="imageDetail">
+	<f:if condition="{item.images}">
+		<f:then>
+			<f:comment>With bad formatting we avoid lne breaks</f:comment>
+			<f:for each="{item.images}" as="image" iteration="i">
+				<f:if condition="{i.isFirst}">
+					<f:then>
+						<f:uri.image image="{image}" width="{width}" height="{height}" /></f:then>
+					<f:else>,|,
+						<f:uri.image image="{image}" width="{width}" height="{height}" /></f:else>
+				</f:if>
+			</f:for>
+		</f:then>
+		<f:else>
+			<f:uri.image src="{settings.defaultImageBig}" width="{width}" height="{height}" />
+		</f:else>
+	</f:if>
+</f:section>
+
+<f:section name="imagePreview">
+	<f:if condition="{item.image}">
+		<f:then>
+			<f:image src="{item.image.uid}" treatIdAsReference="1" alt="{item.image.originalResource.title}" class="item-item__img img-responsive"
+				width="{settings.list.item.image.width}" height="{settings.list.item.image.height}" />
+		</f:then>
+		<f:else>
+			<f:image src="{settings.list.item.image.no-image}" alt="{item.image.originalResource.title}" class="item-item__img img-responsive" width="{settings.list.item.image.width}" height="{settings.list.item.image.height}" />
+		</f:else>
+	</f:if>
+</f:section>

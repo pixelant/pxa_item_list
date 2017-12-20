@@ -1,0 +1,26 @@
+<div id="categories-filter" class="{settings.filter.wrapperClass}">
+    <div class="row">
+        <f:for each="{filterCategories}" as="filterCategory" iteration="ii">
+            <f:if condition="{filterCategory.subCategories}">
+            <div class="{settings.filter.column} column-filter-{ii.cycle}">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>{filterCategory.category.title}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-{f:if(condition: '{filterCategory.subCategories -> f:count()} > {settings.filter.maxColumnItem}', then: '{settings.filter.maxColumnItem}', else: '12')}">
+                        <f:for each="{filterCategory.subCategories}" as="subCategory" iteration="i">
+                            <f:if condition="{i.index} === {filterCategory.maxColumnItem}"></div><div class="col-md-6"></f:if>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="{subCategory.uid}"> {subCategory.title}</label>
+                            </div>
+                        </f:for>
+                    </div>
+                </div>
+            </div>
+            </f:if>
+        </f:for>
+    </div>
+</div>

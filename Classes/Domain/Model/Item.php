@@ -47,6 +47,46 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $name = '';
 
 	/**
+	 * customer
+	 *
+	 * @var string
+	 * @validate NotEmpty
+	 */
+	protected $customer = '';
+
+	/**
+	 * product choice
+	 *
+	 * @var string
+	 * @validate NotEmpty
+	 */
+	protected $productChoice = '';
+
+	/**
+	 * architect
+	 *
+	 * @var string
+	 * @validate NotEmpty
+	 */
+	protected $architect = '';
+
+	/**
+	 * consultant
+	 *
+	 * @var string
+	 * @validate NotEmpty
+	 */
+	protected $consultant = '';
+
+	/**
+	 * installer
+	 *
+	 * @var string
+	 * @validate NotEmpty
+	 */
+	protected $installer = '';
+
+	/**
 	 * description
 	 *
 	 * @var string
@@ -66,13 +106,6 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
 	 */
 	protected $pdf = NULL;
-
-	/**
-	 * Issuu configid (the value in the data-configid attribute)
-	 *
-	 * @var string
-	 */
-	protected $issuuConfigId = '';
 
 	/**
 	 * Date
@@ -98,6 +131,120 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setName($name) {
 		$this->name = $name;
+	}
+
+	/**
+	 * Returns the year
+	 *
+	 * @return string $year
+	 */
+	public function getYear() {
+		return $this->year;
+	}
+
+	/**
+	 * Sets the year
+	 *
+	 * @param string $year
+	 * @return void
+	 */
+	public function setYear($year) {
+		$this->year = $year;
+	}
+
+	/**
+	 * Returns the customer
+	 *
+	 * @return string $customer
+	 */
+	public function getCustomer() {
+		return $this->customer;
+	}
+
+	/**
+	 * Sets the customer
+	 *
+	 * @param string $customer
+	 * @return void
+	 */
+	public function setCustomer($customer) {
+		$this->customer = $customer;
+	}
+
+	/**
+	 * Returns the product choice
+	 *
+	 * @return string $productChoice
+	 */
+	public function getProductChoice() {
+		return $this->productChoice;
+	}
+
+	/**
+	 * Sets the product choice
+	 *
+	 * @param string $productChoice
+	 * @return void
+	 */
+	public function setProductChoice($productChoice) {
+		$this->productChoice = $productChoice;
+	}
+
+	/**
+	 * Returns the architect
+	 *
+	 * @return string $architect
+	 */
+	public function getArchitect() {
+		return $this->architect;
+	}
+
+	/**
+	 * Sets the architect
+	 *
+	 * @param string $architect
+	 * @return void
+	 */
+	public function setArchitect($architect) {
+		$this->architect = $architect;
+	}
+
+	/**
+	 * Returns the consultant
+	 *
+	 * @return string $consultant
+	 */
+	public function getConsultant() {
+		return $this->consultant;
+	}
+
+	/**
+	 * Sets the consultant
+	 *
+	 * @param string $consultant
+	 * @return void
+	 */
+	public function setConsultant($consultant) {
+		$this->consultant = $consultant;
+	}
+
+	/**
+	 * Returns the installer
+	 *
+	 * @return string $installer
+	 */
+	public function getInstaller() {
+		return $this->installer;
+	}
+
+	/**
+	 * Sets the installer
+	 *
+	 * @param string $installer
+	 * @return void
+	 */
+	public function setInstaller($installer) {
+		$this->installer = $installer;
 	}
 
 	/**
@@ -158,25 +305,6 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * Returns the issuuConfigId
-	 *
-	 * @return string $issuuConfigId
-	 */
-	public function getIssuuConfigId() {
-		return $this->issuuConfigId;
-	}
-
-	/**
-	 * Sets the issuuConfigId
-	 *
-	 * @param string $issuuConfigId
-	 * @return void
-	 */
-	public function setIssuuConfigId($issuuConfigId) {
-		$this->issuuConfigId = $issuuConfigId;
-	}
-
-	/**
 	 * Adds a Category
 	 *
 	 * @param \TYPO3\CMS\Extbase\Domain\Model\Category $category
@@ -194,6 +322,38 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function removeCategory(\TYPO3\CMS\Extbase\Domain\Model\Category $categoryToRemove) {
 		$this->categories->detach($categoryToRemove);
+	}
+
+    /**
+     * list of uids of categories
+     *
+     * @return string
+     */
+    public function getCategoriesUidList() {
+        $cateroiesUids = [];
+
+        /** @var Category $category */
+        foreach ( $this->getCategories() as $category) {
+            $cateroiesUids[] = $category->getUid();
+        }
+
+        return implode(',', $cateroiesUids);
+	}
+
+    /**
+     * list of names of categories
+     *
+     * @return string
+     */
+    public function getCategoriesTitleList() {
+        $cateroiesTitles = [];
+
+        /** @var Category $category */
+        foreach ( $this->getCategories() as $category) {
+            $cateroiesTitles[] = $category->getTitle();
+        }
+
+        return implode(', ', $cateroiesTitles);
 	}
 
 	/**

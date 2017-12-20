@@ -4,31 +4,53 @@
 		<header/>
 		<body>
 			<trans-unit id="tx_pxaitemlist_domain_model_item" approved="yes">
-				<source>Item</source> <target state="translated">Recept</target></trans-unit>
+				<source>Item</source> <target state="translated">Objekt</target>
+			</trans-unit>
 			<trans-unit id="tx_pxaitemlist_domain_model_item.name" approved="yes">
-				<source>Name</source> <target state="translated">Namn</target></trans-unit>
+				<source>Name</source> <target state="translated">Namn</target>
+			</trans-unit>
+			<trans-unit id="tx_pxaitemlist_domain_model_item.year" approved="yes">
+				<source>Year</source> <target state="translated">År</target>
+			</trans-unit>
+			<trans-unit id="tx_pxaitemlist_domain_model_item.categories" approved="yes">
+				<source>Categories</source> <target state="translated">Kategorier</target>
+			</trans-unit>
+			<trans-unit id="tx_pxaitemlist_domain_model_item.customer" approved="yes">
+				<source>Customer</source> <target state="translated">Beställare</target>
+			</trans-unit>
+			<trans-unit id="tx_pxaitemlist_domain_model_item.product_choice" approved="yes">
+				<source>Product Choice</source> <target state="translated">Produktval</target>
+			</trans-unit>
+			<trans-unit id="tx_pxaitemlist_domain_model_item.architect" approved="yes">
+				<source>Architect</source> <target state="translated">Arkitekt</target>
+			</trans-unit>
+			<trans-unit id="tx_pxaitemlist_domain_model_item.consultant" approved="yes">
+				<source>Consultant</source> <target state="translated">Konsult</target>
+			</trans-unit>
+			<trans-unit id="tx_pxaitemlist_domain_model_item.installer" approved="yes">
+				<source>Installer</source> <target state="translated">Installatör</target>
+			</trans-unit>
 			<trans-unit id="tx_pxaitemlist_domain_model_item.description" approved="yes">
-				<source>Description</source> <target state="translated">Beskrivning</target></trans-unit>
+				<source>Description</source> <target state="translated">Beskrivning</target>
+			</trans-unit>
 			<trans-unit id="tx_pxaitemlist_domain_model_item.image" approved="yes">
-				<source>Image</source> <target state="translated">Bild</target></trans-unit>
+				<source>Image</source> <target state="translated">Bild</target>
+			</trans-unit>
 			<trans-unit id="tx_pxaitemlist_domain_model_item.pdf" approved="yes">
-				<source>Pdf</source> <target state="translated">PDF</target></trans-unit>
-			<trans-unit id="tx_pxaitemlist_domain_model_item.issuu_config_id" approved="yes">
-				<source>Issuu Config Id</source> <target state="translated">Issuu id</target></trans-unit>
+				<source>Pdf</source> <target state="translated">PDF</target>
+			</trans-unit>
 			<trans-unit id="tx_pxaitemlist_domain_model_item.date" approved="yes">
-				<source>Date</source> <target state="translated">Datum</target></trans-unit>
+				<source>Date</source> <target state="translated">Datum</target>
+			</trans-unit>
 			<trans-unit id="label.itemCategories" approved="yes">
-				<source>Item-categories</source> <target state="translated">Kategori</target></trans-unit>
+				<source>Item-categories</source> <target state="translated">Kategori</target>
+			</trans-unit>
 			<trans-unit id="label.download" approved="yes">
-				<source>Download</source> <target state="translated">Ladda ned</target></trans-unit>
-			<trans-unit id="label.showAll" approved="yes">
-				<source>Show all</source> <target state="translated">Visa alla</target></trans-unit>
-			<trans-unit id="label.description" approved="yes">
-				<source>Description</source> <target state="translated">Beskrivning</target></trans-unit>
-			<trans-unit id="label.category" approved="yes">
-				<source>Category</source> <target state="translated">Kategori</target></trans-unit>
-			<trans-unit id="label.backToList" approved="yes">
-				<source>All items</source> <target state="translated">Alla recept</target></trans-unit>				
+				<source>Download</source> <target state="translated">Ladda ned</target>
+			</trans-unit>
+			<trans-unit id="label.go_top" approved="yes">
+				<source>Go Top</source> <target state="translated">Upp till toppen</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
