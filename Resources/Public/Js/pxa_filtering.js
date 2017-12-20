@@ -26,52 +26,56 @@
                 selectors += selectors.length === 0 ? filters[i].selectorId : ', ' + filters[i].selectorId;
                 self.filters[i] = $(filters[i].selectorId);
 
-                self.filters[i].on(self.options.triggerFilterOnEvent, function (e) {
-                    e.preventDefault();
-                    if (self.options.putActiveFilterClassOnParent) {
-                        $(this).parent().toggleClass(self.options.activeClassFilterItem);
-                    } else {
-                        $(this).toggleClass(self.options.activeClassFilterItem);
-                    }
+                self.filters[i].on(
+                    self.options.triggerFilterOnEvent,
+                    function (e) {
+                        e.preventDefault();
+                        if (self.options.putActiveFilterClassOnParent) {
+                            $(this).parent().toggleClass(self.options.activeClassFilterItem);
+                        } else {
+                            $(this).toggleClass(self.options.activeClassFilterItem);
+                        }
 
-                    self.doFiltering($(this));
-                });
+                        self.doFiltering($(this));
+                    }
+                );
             }
         },
 
         doFiltering: function (fireElement) {
             var self = this;
 
-            var visibleItems = self.items.filter(function () {
-                var isVisible = false;
+            var visibleItems = self.items.filter(
+                function () {
+                    var isVisible = false;
 
-                if (self.areAnyFiltersActive()) {
-                    for (var i = self.filters.length - 1; i >= 0; i--) {
-                        var data = String($(this).data(self.options.filters[i].data));
+                    if (self.areAnyFiltersActive()) {
+                        for (var i = self.filters.length - 1; i >= 0; i--) {
+                            var data = String($(this).data(self.options.filters[i].data));
 
-                        var activeFilters = self.filters[i].filter(':checked');
-                        //don't do filtering of no active filters
-                        if (activeFilters.length > 0) {
-                            isVisible = self.doFilteringByFilters(data, activeFilters, self.options.filters[i].logicalOperator);
-                        }
-                        else {
-                            continue;
-                        }
+                            var activeFilters = self.filters[i].filter(':checked');
+                            //don't do filtering of no active filters
+                            if (activeFilters.length > 0) {
+                                isVisible = self.doFilteringByFilters(data, activeFilters, self.options.filters[i].logicalOperator);
+                            } else {
+                                continue;
+                            }
 
-                        if (self.filters.length > 1) {
-                            if (self.options.logicalOperatorFilters == 'OR' && isVisible) {
-                                break;
-                            } else if (self.options.logicalOperatorFilters == 'AND' && !isVisible) {
-                                break;
+                            if (self.filters.length > 1) {
+                                if (self.options.logicalOperatorFilters == 'OR' && isVisible) {
+                                    break;
+                                } else if (self.options.logicalOperatorFilters == 'AND' && !isVisible) {
+                                    break;
+                                }
                             }
                         }
+                    } else {
+                        return true;
                     }
-                } else {
-                    return true;
-                }
 
-                return isVisible;
-            });
+                    return isVisible;
+                }
+            );
 
             self.changeVisibilityOfItems(visibleItems);
             self.triggerCall('onFilteringDone', fireElement);
@@ -81,16 +85,19 @@
             var self = this,
                 isVisible = false;
 
-            $(filters).each(function () {
-                if (self.isInList(valueOfItem, self.getFilterValue($(this)))) {
-                    isVisible = true;
-                    if (logicalOperator == 'OR') return false;
-
-                } else if (logicalOperator == 'AND') {
-                    isVisible = false;
-                    return false;
+            $(filters).each(
+                function () {
+                    if (self.isInList(valueOfItem, self.getFilterValue($(this)))) {
+                        isVisible = true;
+                        if (logicalOperator == 'OR') {
+                            return false;
+                        }
+                    } else if (logicalOperator == 'AND') {
+                        isVisible = false;
+                        return false;
+                    }
                 }
-            });
+            );
 
             return isVisible;
         },
@@ -168,8 +175,7 @@
         triggerFilterOnEvent: 'change',
         filterAttributeName: 'value',
         useDataToGetFilterAttribute: false,
-        filters: []/*,
-        onFilteringDone: function(filterElement)*/
+        filters: []
     };
 
 })(jQuery);

@@ -2,7 +2,6 @@
 namespace Pixelant\PxaItemList\Domain\Model;
 
 /***************************************************************
- *
  *  Copyright notice
  *
  *  (c) 2015 Pixelant <info@pixelant.se>, Pixelant AB
@@ -29,369 +28,401 @@ namespace Pixelant\PxaItemList\Domain\Model;
 /**
  * Item
  */
-class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+{
 
-	/**
-	 * Categories
-	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
-	 */
-	protected $categories = NULL;
+    /**
+     * Categories
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
+     */
+    protected $categories = null;
 
-	/**
-	 * Name
-	 *
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $name = '';
+    /**
+     * Name
+     *
+     * @var      string
+     * @validate NotEmpty
+     */
+    protected $name = '';
 
-	/**
-	 * customer
-	 *
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $customer = '';
+    /**
+     * customer
+     *
+     * @var      string
+     * @validate NotEmpty
+     */
+    protected $customer = '';
 
-	/**
-	 * product choice
-	 *
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $productChoice = '';
+    /**
+     * product choice
+     *
+     * @var      string
+     * @validate NotEmpty
+     */
+    protected $productChoice = '';
 
-	/**
-	 * architect
-	 *
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $architect = '';
+    /**
+     * architect
+     *
+     * @var      string
+     * @validate NotEmpty
+     */
+    protected $architect = '';
 
-	/**
-	 * consultant
-	 *
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $consultant = '';
+    /**
+     * consultant
+     *
+     * @var      string
+     * @validate NotEmpty
+     */
+    protected $consultant = '';
 
-	/**
-	 * installer
-	 *
-	 * @var string
-	 * @validate NotEmpty
-	 */
-	protected $installer = '';
+    /**
+     * installer
+     *
+     * @var      string
+     * @validate NotEmpty
+     */
+    protected $installer = '';
 
-	/**
-	 * description
-	 *
-	 * @var string
-	 */
-	protected $description = '';
+    /**
+     * description
+     *
+     * @var string
+     */
+    protected $description = '';
 
-	/**
-	 * Image
-	 *
-	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 */
-	protected $image = NULL;
+    /**
+     * Image
+     *
+     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     */
+    protected $image = null;
 
-	/**
-	 * PDF file
-	 *
-	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 */
-	protected $pdf = NULL;
+    /**
+     * PDF file
+     *
+     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     */
+    protected $pdf = null;
 
-	/**
-	 * Date
-	 *
-	 * @var \DateTime
-	 */
-	protected $date = NULL;
+    /**
+     * Date
+     *
+     * @var \DateTime
+     */
+    protected $date = null;
 
-	/**
-	 * Returns the name
-	 *
-	 * @return string $name
-	 */
-	public function getName() {
-		return $this->name;
-	}
+    /**
+     * Returns the name
+     *
+     * @return string $name
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	/**
-	 * Sets the name
-	 *
-	 * @param string $name
-	 * @return void
-	 */
-	public function setName($name) {
-		$this->name = $name;
-	}
+    /**
+     * Sets the name
+     *
+     * @param  string $name
+     * @return void
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 
-	/**
-	 * Returns the year
-	 *
-	 * @return string $year
-	 */
-	public function getYear() {
-		return $this->year;
-	}
+    /**
+     * Returns the year
+     *
+     * @return string $year
+     */
+    public function getYear()
+    {
+        return $this->year;
+    }
 
-	/**
-	 * Sets the year
-	 *
-	 * @param string $year
-	 * @return void
-	 */
-	public function setYear($year) {
-		$this->year = $year;
-	}
+    /**
+     * Sets the year
+     *
+     * @param  string $year
+     * @return void
+     */
+    public function setYear($year)
+    {
+        $this->year = $year;
+    }
 
-	/**
-	 * Returns the customer
-	 *
-	 * @return string $customer
-	 */
-	public function getCustomer() {
-		return $this->customer;
-	}
+    /**
+     * Returns the customer
+     *
+     * @return string $customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
 
-	/**
-	 * Sets the customer
-	 *
-	 * @param string $customer
-	 * @return void
-	 */
-	public function setCustomer($customer) {
-		$this->customer = $customer;
-	}
+    /**
+     * Sets the customer
+     *
+     * @param  string $customer
+     * @return void
+     */
+    public function setCustomer($customer)
+    {
+        $this->customer = $customer;
+    }
 
-	/**
-	 * Returns the product choice
-	 *
-	 * @return string $productChoice
-	 */
-	public function getProductChoice() {
-		return $this->productChoice;
-	}
+    /**
+     * Returns the product choice
+     *
+     * @return string $productChoice
+     */
+    public function getProductChoice()
+    {
+        return $this->productChoice;
+    }
 
-	/**
-	 * Sets the product choice
-	 *
-	 * @param string $productChoice
-	 * @return void
-	 */
-	public function setProductChoice($productChoice) {
-		$this->productChoice = $productChoice;
-	}
+    /**
+     * Sets the product choice
+     *
+     * @param  string $productChoice
+     * @return void
+     */
+    public function setProductChoice($productChoice)
+    {
+        $this->productChoice = $productChoice;
+    }
 
-	/**
-	 * Returns the architect
-	 *
-	 * @return string $architect
-	 */
-	public function getArchitect() {
-		return $this->architect;
-	}
+    /**
+     * Returns the architect
+     *
+     * @return string $architect
+     */
+    public function getArchitect()
+    {
+        return $this->architect;
+    }
 
-	/**
-	 * Sets the architect
-	 *
-	 * @param string $architect
-	 * @return void
-	 */
-	public function setArchitect($architect) {
-		$this->architect = $architect;
-	}
+    /**
+     * Sets the architect
+     *
+     * @param  string $architect
+     * @return void
+     */
+    public function setArchitect($architect)
+    {
+        $this->architect = $architect;
+    }
 
-	/**
-	 * Returns the consultant
-	 *
-	 * @return string $consultant
-	 */
-	public function getConsultant() {
-		return $this->consultant;
-	}
+    /**
+     * Returns the consultant
+     *
+     * @return string $consultant
+     */
+    public function getConsultant()
+    {
+        return $this->consultant;
+    }
 
-	/**
-	 * Sets the consultant
-	 *
-	 * @param string $consultant
-	 * @return void
-	 */
-	public function setConsultant($consultant) {
-		$this->consultant = $consultant;
-	}
+    /**
+     * Sets the consultant
+     *
+     * @param  string $consultant
+     * @return void
+     */
+    public function setConsultant($consultant)
+    {
+        $this->consultant = $consultant;
+    }
 
-	/**
-	 * Returns the installer
-	 *
-	 * @return string $installer
-	 */
-	public function getInstaller() {
-		return $this->installer;
-	}
+    /**
+     * Returns the installer
+     *
+     * @return string $installer
+     */
+    public function getInstaller()
+    {
+        return $this->installer;
+    }
 
-	/**
-	 * Sets the installer
-	 *
-	 * @param string $installer
-	 * @return void
-	 */
-	public function setInstaller($installer) {
-		$this->installer = $installer;
-	}
+    /**
+     * Sets the installer
+     *
+     * @param  string $installer
+     * @return void
+     */
+    public function setInstaller($installer)
+    {
+        $this->installer = $installer;
+    }
 
-	/**
-	 * Returns the description
-	 *
-	 * @return string $description
-	 */
-	public function getDescription() {
-		return $this->description;
-	}
+    /**
+     * Returns the description
+     *
+     * @return string $description
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 
-	/**
-	 * Sets the description
-	 *
-	 * @param string $description
-	 * @return void
-	 */
-	public function setDescription($description) {
-		$this->description = $description;
-	}
+    /**
+     * Sets the description
+     *
+     * @param  string $description
+     * @return void
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
 
-	/**
-	 * Returns the image
-	 *
-	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
-	 */
-	public function getImage() {
-		return $this->image;
-	}
+    /**
+     * Returns the image
+     *
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
 
-	/**
-	 * Sets the image
-	 *
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
-	 * @return void
-	 */
-	public function setImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image) {
-		$this->image = $image;
-	}
+    /**
+     * Sets the image
+     *
+     * @param  \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
+     * @return void
+     */
+    public function setImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image)
+    {
+        $this->image = $image;
+    }
 
-	/**
-	 * Returns the pdf
-	 *
-	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $pdf
-	 */
-	public function getPdf() {
-		return $this->pdf;
-	}
+    /**
+     * Returns the pdf
+     *
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $pdf
+     */
+    public function getPdf()
+    {
+        return $this->pdf;
+    }
 
-	/**
-	 * Sets the pdf
-	 *
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $pdf
-	 * @return void
-	 */
-	public function setPdf(\TYPO3\CMS\Extbase\Domain\Model\FileReference $pdf) {
-		$this->pdf = $pdf;
-	}
+    /**
+     * Sets the pdf
+     *
+     * @param  \TYPO3\CMS\Extbase\Domain\Model\FileReference $pdf
+     * @return void
+     */
+    public function setPdf(\TYPO3\CMS\Extbase\Domain\Model\FileReference $pdf)
+    {
+        $this->pdf = $pdf;
+    }
 
-	/**
-	 * Adds a Category
-	 *
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\Category $category
-	 * @return void
-	 */
-	public function addCategory(\TYPO3\CMS\Extbase\Domain\Model\Category $category) {
-		$this->categories->attach($category);
-	}
+    /**
+     * Adds a Category
+     *
+     * @param  \TYPO3\CMS\Extbase\Domain\Model\Category $category
+     * @return void
+     */
+    public function addCategory(\TYPO3\CMS\Extbase\Domain\Model\Category $category)
+    {
+        $this->categories->attach($category);
+    }
 
-	/**
-	 * Removes a Category
-	 *
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\Category $categoryToRemove The Category to be removed
-	 * @return void
-	 */
-	public function removeCategory(\TYPO3\CMS\Extbase\Domain\Model\Category $categoryToRemove) {
-		$this->categories->detach($categoryToRemove);
-	}
+    /**
+     * Removes a Category
+     *
+     * @param  \TYPO3\CMS\Extbase\Domain\Model\Category $categoryToRemove The Category to be removed
+     * @return void
+     */
+    public function removeCategory(\TYPO3\CMS\Extbase\Domain\Model\Category $categoryToRemove)
+    {
+        $this->categories->detach($categoryToRemove);
+    }
 
     /**
      * list of uids of categories
      *
      * @return string
      */
-    public function getCategoriesUidList() {
+    public function getCategoriesUidList()
+    {
         $cateroiesUids = [];
 
-        /** @var Category $category */
-        foreach ( $this->getCategories() as $category) {
+        /**
+ * @var Category $category
+*/
+        foreach ($this->getCategories() as $category) {
             $cateroiesUids[] = $category->getUid();
         }
 
         return implode(',', $cateroiesUids);
-	}
+    }
 
     /**
      * list of names of categories
      *
      * @return string
      */
-    public function getCategoriesTitleList() {
+    public function getCategoriesTitleList()
+    {
         $cateroiesTitles = [];
 
-        /** @var Category $category */
-        foreach ( $this->getCategories() as $category) {
+        /**
+ * @var Category $category
+*/
+        foreach ($this->getCategories() as $category) {
             $cateroiesTitles[] = $category->getTitle();
         }
 
         return implode(', ', $cateroiesTitles);
-	}
+    }
 
-	/**
-	 * Returns the categories
-	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category> $categories
-	 */
-	public function getCategories() {
-		return $this->categories;
-	}
+    /**
+     * Returns the categories
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category> $categories
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
 
-	/**
-	 * Sets the categories
-	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category> $categories
-	 * @return void
-	 */
-	public function setCategories(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories) {
-		$this->categories = $categories;
-	}
+    /**
+     * Sets the categories
+     *
+     * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category> $categories
+     * @return void
+     */
+    public function setCategories(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories)
+    {
+        $this->categories = $categories;
+    }
 
-	/**
-	 * Returns the date
-	 *
-	 * @return \DateTime $date
-	 */
-	public function getDate() {
-		return $this->date;
-	}
+    /**
+     * Returns the date
+     *
+     * @return \DateTime $date
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
 
-	/**
-	 * Sets the date
-	 *
-	 * @param \DateTime $date
-	 * @return void
-	 */
-	public function setDate(\DateTime $date) {
-		$this->date = $date;
-	}
-
+    /**
+     * Sets the date
+     *
+     * @param  \DateTime $date
+     * @return void
+     */
+    public function setDate(\DateTime $date)
+    {
+        $this->date = $date;
+    }
 }

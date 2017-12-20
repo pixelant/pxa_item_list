@@ -29,27 +29,43 @@
     overflow: hidden;
     height: 25px;
 }
-/*Detail View*/
-.tx-pxa-item-list div#detailView {
+/*Preview*/
+.tx-pxa-item-list div#preview-detail-view {
     position: absolute;
     width: 100%;
     left: 0;
     overflow: hidden;
 }
-.tx-pxa-item-list #detailView .preview-img {
+.tx-pxa-item-list #preview-detail-view .preview-img {
     padding-right: 0;
 }
-.tx-pxa-item-list #detailView .preview-img img {
+.tx-pxa-item-list #preview-detail-view .preview-img img {
     width: auto;
     height: 600px;
 }
-.tx-pxa-item-list #detailView .preview-detail {
+.tx-pxa-item-list #preview-detail-view .preview-detail {
     background-color: #ececec;
     text-align: left;
     overflow: scroll;
     position: relative;
     height: auto;
     max-height: 600px;
+}
+#preview-template {
+    display: none;
+}
+.preview-info {
+    padding: 30px;
+}
+dt,
+dd {
+    float: left;
+}
+dt {
+    width: 40%;
+}
+dd {
+    width: 60%;
 }
 /*Button*/
 .tx-pxa-item-list .go-top .btn {
@@ -71,20 +87,6 @@
 .tx-pxa-item-list .item-item__img {
     margin: 0 auto;
 }
-.tx-pxa-item-list .preview-info .dt,
-.tx-pxa-item-list .preview-info .dd {
-    float: left;
-    width: 50%;
-}
-dt,
-dd {
-    float: left;
-    width: 50%;
-}
-
-#preview {
-    display: none;
-}
 /*Media Queries*/
 @media (max-width: 767px){
     .tx-pxa-item-list .short-info {
@@ -93,7 +95,7 @@ dd {
     .tx-pxa-item-list .preview-img {
         display: none;
     }
-    .tx-pxa-item-list #detailView {
+    .tx-pxa-item-list #preview-detail-view {
         padding-right: 30px;
         margin-left: 15px;
     }
@@ -103,7 +105,7 @@ dd {
         width: 45%;
         margin: 0px 18.5px;
     }
-    .tx-pxa-item-list #detailView {
+    .tx-pxa-item-list #preview-detail-view {
         padding-right: 15px;
         margin-left: 0px;
     }
@@ -113,7 +115,7 @@ dd {
         width: 30%;
         margin: 0px 15px;
     }
-    .tx-pxa-item-list #detailView {
+    .tx-pxa-item-list #preview-detail-view {
         padding-right: 15px;
         margin-left: 0px;
     }
@@ -123,7 +125,7 @@ dd {
         width: 22.5%;
         margin: 0 15px 0 10px;
     }
-    .tx-pxa-item-list #detailView {
+    .tx-pxa-item-list #preview-detail-view {
         padding-right: 15px;
         margin-left: 0px;
     }

@@ -11,24 +11,24 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'Item list',
-	'description' => 'Listing items. Show detail on item click. Filter by categories and attributes.',
-	'category' => 'plugin',
-	'author' => 'Pixelant',
-	'author_email' => 'info@pixelant.se',
-	'state' => 'alpha',
-	'internal' => '',
-	'uploadfolder' => '1',
-	'createDirs' => '',
-	'clearCacheOnLoad' => 0,
-	'version' => '1.0.0',
-	'constraints' => array(
-		'depends' => array(
-			'typo3' => '8.7.0-8.7.99',
-		),
-		'conflicts' => array(
-		),
-		'suggests' => array(
-		),
-	),
+    'title' => 'Item list',
+    'description' => 'Listing items. Show detail on item click. Filter by categories and attributes.',
+    'category' => 'plugin',
+    'author' => 'Pixelant',
+    'author_email' => 'info@pixelant.se',
+    'state' => 'alpha',
+    'internal' => '',
+    'uploadfolder' => '1',
+    'createDirs' => '',
+    'clearCacheOnLoad' => 0,
+    'version' => '1.0.0',
+    'constraints' => array(
+        'depends' => array(
+            'typo3' => '8.7.0-8.7.99',
+        ),
+        'conflicts' => array(
+        ),
+        'suggests' => array(
+        ),
+    ),
 );

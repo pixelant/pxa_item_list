@@ -1,10 +1,11 @@
 <?php
 namespace Pixelant\PxaItemList\Tests\Unit\Controller;
+
 /***************************************************************
  *  Copyright notice
  *
  *  (c) 2015 Pixelant <info@pixelant.se>, Pixelant AB
- *  			
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -29,49 +30,66 @@ namespace Pixelant\PxaItemList\Tests\Unit\Controller;
  *
  * @author Pixelant <info@pixelant.se>
  */
-class ItemControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class ItemControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
 
-	/**
-	 * @var \Pixelant\PxaItemList\Controller\ItemController
-	 */
-	protected $subject = NULL;
+    /**
+     * @var \Pixelant\PxaItemList\Controller\ItemController
+     */
+    protected $subject = null;
 
-	public function setUp() {
-		$this->subject = $this->getMock('Pixelant\\PxaItemList\\Controller\\ItemController', array('redirect', 'forward', 'addFlashMessage'), array(), '', FALSE);
-	}
+    public function setUp()
+    {
+        $this->subject = $this->getMock(
+            'Pixelant\\PxaItemList\\Controller\\ItemController',
+            array('redirect', 'forward', 'addFlashMessage'),
+            array(),
+            '',
+            false
+        );
+    }
 
-	public function tearDown() {
-		unset($this->subject);
-	}
+    public function tearDown()
+    {
+        unset($this->subject);
+    }
 
-	/**
-	 * @test
-	 */
-	public function listActionFetchesAllItemsFromRepositoryAndAssignsThemToView() {
+    /**
+     * @test
+     */
+    public function listActionFetchesAllItemsFromRepositoryAndAssignsThemToView()
+    {
 
-		$allItems = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', FALSE);
+        $allItems = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', false);
 
-		$itemRepository = $this->getMock('Pixelant\\PxaItemList\\Domain\\Repository\\ItemRepository', array('findAll'), array(), '', FALSE);
-		$itemRepository->expects($this->once())->method('findAll')->will($this->returnValue($allItems));
-		$this->inject($this->subject, 'itemRepository', $itemRepository);
+        $itemRepository = $this->getMock(
+            'Pixelant\\PxaItemList\\Domain\\Repository\\ItemRepository',
+            array('findAll'),
+            array(),
+            '',
+            false
+        );
+        $itemRepository->expects($this->once())->method('findAll')->will($this->returnValue($allItems));
+        $this->inject($this->subject, 'itemRepository', $itemRepository);
 
-		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
-		$view->expects($this->once())->method('assign')->with('items', $allItems);
-		$this->inject($this->subject, 'view', $view);
+        $view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
+        $view->expects($this->once())->method('assign')->with('items', $allItems);
+        $this->inject($this->subject, 'view', $view);
 
-		$this->subject->listAction();
-	}
+        $this->subject->listAction();
+    }
 
-	/**
-	 * @test
-	 */
-	public function showActionAssignsTheGivenItemToView() {
-		$item = new \Pixelant\PxaItemList\Domain\Model\Item();
+    /**
+     * @test
+     */
+    public function showActionAssignsTheGivenItemToView()
+    {
+        $item = new \Pixelant\PxaItemList\Domain\Model\Item();
 
-		$view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
-		$this->inject($this->subject, 'view', $view);
-		$view->expects($this->once())->method('assign')->with('item', $item);
+        $view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
+        $this->inject($this->subject, 'view', $view);
+        $view->expects($this->once())->method('assign')->with('item', $item);
 
-		$this->subject->showAction($item);
-	}
+        $this->subject->showAction($item);
+    }
 }

@@ -53,5 +53,3 @@ CREATE TABLE tx_pxaitemlist_domain_model_item (
 CREATE TABLE tx_pxaitemlist_domain_model_item (
 	categories int(11) unsigned DEFAULT '0' NOT NULL,
 );
-
-## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
