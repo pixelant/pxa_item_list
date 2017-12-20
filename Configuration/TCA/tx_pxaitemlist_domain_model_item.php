@@ -227,6 +227,7 @@ return array(
 						)
 					),
 					'maxitems' => 1,
+					'minitems' => 1,
 					'eval' => 'required'
 				),
 				$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
