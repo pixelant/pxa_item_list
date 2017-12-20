@@ -50,6 +50,9 @@ plugin.tx_pxaitemlist_item {
                 columnPositionClearfix = 3
             }
         }
+        translateJsLabels {
+            1 = label.none
+        }
 	}
 }
 

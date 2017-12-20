@@ -54,6 +54,9 @@
             <trans-unit id="label.go_top">
                 <source>Go top</source>
             </trans-unit>
+            <trans-unit id="label.none">
+                <source>None</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

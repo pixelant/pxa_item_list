@@ -27,6 +27,7 @@ namespace Pixelant\PxaItemList\Controller;
  ***************************************************************/
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * ItemController
@@ -62,9 +63,36 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController 
 		}
 		$items = $this->itemRepository->findAll();
 
+		$this->getItemListLabels($pageRenderer);
+
 		$this->view->assign('items', $items);
 		$this->view->assign('filterCategories', $this->getFilterCategories($items));
 	}
+
+    /**
+     * Add labels for JS
+     *
+     * @return void
+     */
+    protected function getItemListLabels($pageRenderer)
+    {
+        static $jsLabelsAdded;
+        if ($jsLabelsAdded === null) {
+            $labelsJs = [];
+            if (is_array($this->settings['translateJsLabels'])) {
+                foreach ($this->settings['translateJsLabels'] as $translateJsLabelSet) {
+                    $translateJsLabels = GeneralUtility::trimExplode(',', $translateJsLabelSet, true);
+                    foreach ($translateJsLabels as $translateJsLabel) {
+						$labelsJs[$translateJsLabel] = LocalizationUtility::translate($translateJsLabel, 'PxaItemList');
+                    }
+                }
+			}
+            if (!empty($labelsJs)) {
+                $pageRenderer->addInlineLanguageLabelArray($labelsJs);
+            }
+            $jsLabelsAdded = true;
+        }
+    }
 
 	/**
 	 * getItemCategories Loops through all items and collects categories

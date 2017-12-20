@@ -141,7 +141,9 @@ $(document).ready(function () {
                     var method = fields[i] === 'description' ? 'html' : 'text';
                     fieldWrapper[method](value);
                 } else {
-                    fieldWrapper.parent().hide();
+                    value = TYPO3.lang['label.none'];
+                    var method = fields[i] === 'description' ? 'html' : 'text';
+                    fieldWrapper[method](value);
                 }
             }
 
