@@ -109,7 +109,7 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     private function getItemCategories($items, $subCategories)
     {
-        $itemCategories = array();
+        $itemCategories = [];
         foreach ($items as $item) {
             foreach ($subCategories as $subCategory) {
                 foreach ($item->getCategories() as $category) {
@@ -131,42 +131,47 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      *
      * @return array An array of used categories
      */
-    private function getFilterCategories($items)
+    public function getFilterCategories($items)
     {
-        $categoryColumns = intval($this->settings['filter']['categoryColumns']);
         $filterCategories = [];
+        $categoryColumns = intval($this->settings['filter']['categoryColumns']);
 
-        $filterCategories[1]['category'] = $this->categoryRepository->findByUid(
+        if (empty($categoryColumns)) {
+            $categoryColumns = 4;
+        }
+
+        $filterCategories[0]['category'] = $this->categoryRepository->findByUid(
             $this->settings['filterCategory1']
         );
         $subCategories = $this->categoryRepository->findByParent(
             $this->settings['filterCategory1']
         );
         $subCategoriesCount = count($subCategories);
-        $filterCategories[1]['subCategories'] = $subCategories;
+        $filterCategories[0]['subCategories'] = $subCategories;
         // filter out categories bot in any itemscol-md-12
+        $filterCategories[0]['subCategories'] = $this->getItemCategories(
+            $items,
+            $filterCategories[0]['subCategories']
+        );
+
+        if ($subCategoriesCount > 12 / $categoryColumns) {
+            $filterCategories[0]['maxColumnItem'] = $subCategoriesCount % $categoryColumns === 0 ?
+                $subCategoriesCount / $categoryColumns : intval($subCategoriesCount / $categoryColumns) + 1;
+        }
+
+        $filterCategories[1]['category'] = $this->categoryRepository->findByUid($this->settings['filterCategory2']);
+        $subCategories = $this->categoryRepository->findByParent($this->settings['filterCategory2']);
+        $filterCategories[1]['subCategories'] = $subCategories;
+        // filter out categories bot in any items
         $filterCategories[1]['subCategories'] = $this->getItemCategories(
             $items,
             $filterCategories[1]['subCategories']
         );
-        if ($subCategoriesCount > 12/$categoryColumns) {
-            $filterCategories[1]['maxColumnItem'] = $subCategoriesCount % $categoryColumns === 0 ?
-            $subCategoriesCount/$categoryColumns : intval($subCategoriesCount / $categoryColumns) + 1;
-        }
-
-
-        $filterCategories[2]['category'] = $this->categoryRepository->findByUid($this->settings['filterCategory2']);
-        $subCategories = $this->categoryRepository->findByParent($this->settings['filterCategory2']);
-        $filterCategories[2]['subCategories'] = $subCategories;
-        // filter out categories bot in any items
-        $filterCategories[2]['subCategories'] = $this->getItemCategories(
-            $items,
-            $filterCategories[2]['subCategories']
-        );
         $subCategoriesCount = count($subCategories);
-        if ($subCategoriesCount > 12/$categoryColumns) {
-            $filterCategories[2]['maxColumnItem'] = $subCategoriesCount % $categoryColumns === 0 ?
-            $subCategoriesCount / $categoryColumns : intval($subCategoriesCount / $categoryColumns) + 1;
+
+        if ($subCategoriesCount > 12 / $categoryColumns) {
+            $filterCategories[1]['maxColumnItem'] = $subCategoriesCount % $categoryColumns === 0 ?
+                $subCategoriesCount / $categoryColumns : intval($subCategoriesCount / $categoryColumns) + 1;
         }
 
         return $filterCategories;

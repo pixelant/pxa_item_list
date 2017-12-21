@@ -16,5 +16,17 @@
     },
     "require": {
         "typo3/cms": ">=8.7.0 <=8.7.99"
+    },
+    "require-dev": {
+        "nimut/testing-framework": "^1.0",
+        "squizlabs/php_codesniffer": "2.*",
+        "phpunit/phpunit": "^5.4"
+    },
+    "scripts": {
+        "php:codesniffer": "vendor/bin/phpcs --standard=PSR2 Classes/ Tests/ *.php",
+        "php:codefixer": "vendor/bin/phpcbf --standard=PSR2 Classes/ --report=diff Tests/ *.php",
+        "php:unittests": "export TYPO3_PATH_WEB=$PWD/vendor/Web && vendor/bin/phpunit -c vendor/nimut/testing-framework/res/Configuration/UnitTests.xml Tests/Unit/ --whitelist=Classes --coverage-html code-coverage/unit",
+        "tests:all": "composer php:codesniffer && composer php:unittests"
+
     }
 }

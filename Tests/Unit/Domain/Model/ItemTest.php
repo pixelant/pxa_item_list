@@ -79,10 +79,10 @@ class ItemTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      */
-    public function getYearReturnsInitialValueForString()
+    public function getYearReturnsInitialValueForInt()
     {
         $this->assertSame(
-            '',
+            null,
             $this->subject->getYear()
         );
     }
@@ -90,7 +90,7 @@ class ItemTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      */
-    public function setYearForStringSetsYear()
+    public function setYearForIntSetsYear()
     {
         $this->subject->setYear(1999);
 

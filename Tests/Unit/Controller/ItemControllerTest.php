@@ -40,13 +40,10 @@ class ItemControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     public function setUp()
     {
-        $this->subject = $this->getMock(
-            'Pixelant\\PxaItemList\\Controller\\ItemController',
-            array('redirect', 'forward', 'addFlashMessage'),
-            array(),
-            '',
-            false
-        );
+        $this->subject = $this->getMockBuilder(\Pixelant\PxaItemList\Controller\ItemController::class)
+            ->setMethods(['redirect', 'forward', 'addFlashMessage'])
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     public function tearDown()
@@ -59,37 +56,54 @@ class ItemControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function listActionFetchesAllItemsFromRepositoryAndAssignsThemToView()
     {
+        // Typescript settings
+        $typoscriptSettings = [
+            'filterCategory1' => '13',
+            'filterCategory2' => '134',
+        ];
 
-        $allItems = $this->getMock('TYPO3\\CMS\\Extbase\\Persistence\\ObjectStorage', array(), array(), '', false);
+        $expectedFilterCategories = [
+            [
+                'category' => null,
+                'subCategories' => [],
+            ],
+            [
+                'category' => null,
+                'subCategories' => []
+            ],
+        ];
 
-        $itemRepository = $this->getMock(
-            'Pixelant\\PxaItemList\\Domain\\Repository\\ItemRepository',
-            array('findAll'),
-            array(),
-            '',
-            false
-        );
-        $itemRepository->expects($this->once())->method('findAll')->will($this->returnValue($allItems));
+        $this->inject($this->subject, 'settings', $typoscriptSettings);
+        $allItems = $this->getMockBuilder(\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $itemRepository = $this->getMockBuilder(\Pixelant\PxaItemList\Domain\Repository\ItemRepository::class)
+            ->setMethods(['findAll'])
+            ->disableOriginalConstructor()
+            ->getMock();
+        $itemRepository->expects(self::once())->method('findAll')->will(self::returnValue($allItems));
         $this->inject($this->subject, 'itemRepository', $itemRepository);
 
-        $view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
-        $view->expects($this->once())->method('assign')->with('items', $allItems);
+        $categoryRepository = $this->getMockBuilder(\TYPO3\CMS\Extbase\Domain\Repository\CategoryRepository::class)
+            ->setMethods([])
+            ->disableOriginalConstructor()
+            ->getMock();
+        $this->inject($this->subject, 'categoryRepository', $categoryRepository);
+
+
+        $subject = $this->getMockBuilder(\Pixelant\PxaItemList\Controller\ItemController::class)
+            ->setMethods(['getFilterCategories'])
+            ->disableOriginalConstructor()
+            ->getMock();
+        $subject->expects(self::any())->method('getFilterCategories')->with('items', $allItems);
+
+        $view = $this->getMockBuilder(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface::class)->getMock();
         $this->inject($this->subject, 'view', $view);
+        $view->expects($this->at(0))->method('assign')->with('items', $allItems);
+        $view->expects($this->at(1))->method('assign')->with('filterCategories', $expectedFilterCategories);
+
 
         $this->subject->listAction();
-    }
-
-    /**
-     * @test
-     */
-    public function showActionAssignsTheGivenItemToView()
-    {
-        $item = new \Pixelant\PxaItemList\Domain\Model\Item();
-
-        $view = $this->getMock('TYPO3\\CMS\\Extbase\\Mvc\\View\\ViewInterface');
-        $this->inject($this->subject, 'view', $view);
-        $view->expects($this->once())->method('assign')->with('item', $item);
-
-        $this->subject->showAction($item);
     }
 }
