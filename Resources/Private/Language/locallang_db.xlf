@@ -9,6 +9,27 @@
 			<trans-unit id="tx_pxaitemlist_domain_model_item.name">
 				<source>Name</source>
 			</trans-unit>
+			<trans-unit id="tx_pxaitemlist_domain_model_item.year">
+				<source>Year</source>
+			</trans-unit>
+			<trans-unit id="tx_pxaitemlist_domain_model_item.categories">
+				<source>Categories</source>
+			</trans-unit>
+			<trans-unit id="tx_pxaitemlist_domain_model_item.customer">
+				<source>Customer</source>
+			</trans-unit>
+			<trans-unit id="tx_pxaitemlist_domain_model_item.product_choice">
+				<source>Product Choice</source>
+			</trans-unit>
+			<trans-unit id="tx_pxaitemlist_domain_model_item.architect">
+				<source>Architect</source>
+			</trans-unit>
+			<trans-unit id="tx_pxaitemlist_domain_model_item.consultant">
+				<source>Consultant</source>
+			</trans-unit>
+			<trans-unit id="tx_pxaitemlist_domain_model_item.installer">
+				<source>Installer</source>
+			</trans-unit>
 			<trans-unit id="tx_pxaitemlist_domain_model_item.description">
 				<source>Description</source>
 			</trans-unit>
@@ -18,14 +39,14 @@
 			<trans-unit id="tx_pxaitemlist_domain_model_item.pdf">
 				<source>Pdf</source>
 			</trans-unit>
-			<trans-unit id="tx_pxaitemlist_domain_model_item.issuu_config_id">
-				<source>Issuu Config Id</source>
-			</trans-unit>
 			<trans-unit id="tx_pxaitemlist_domain_model_item.date">
 				<source>Date</source>
 			</trans-unit>
-			<trans-unit id="flexforms.detailPid">
-				<source>View item detail page</source>
+			<trans-unit id="flexforms.filterCategory1">
+				<source>Use subcategories of category as filter 1</source>
+			</trans-unit>
+			<trans-unit id="flexforms.filterCategory2">
+				<source>Use subcategories of category as filter 2</source>
 			</trans-unit>
 		</body>
 	</file>

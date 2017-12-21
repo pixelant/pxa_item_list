@@ -2,7 +2,6 @@
 namespace Pixelant\PxaItemList\Domain\Repository;
 
 /***************************************************************
- *
  *  Copyright notice
  *
  *  (c) 2015 Pixelant <info@pixelant.se>, Pixelant AB
@@ -29,17 +28,19 @@ namespace Pixelant\PxaItemList\Domain\Repository;
 /**
  * The repository for Items
  */
-class ItemRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class ItemRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+{
 
-	// Order by BE sorting
-	protected $defaultOrderings = array(
-		'date' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
-	);
+    // Order by BE sorting
+    protected $defaultOrderings = array(
+    'date' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
+    );
 
-	public function getLatest($limit = 3, $offset = 1) {
-		$query = $this->createQuery();
-		$query->setLimit($limit);
-		$query->setOffset($offset);
-		return $query->execute();
-	}
+    public function getLatest($limit = 3, $offset = 1)
+    {
+        $query = $this->createQuery();
+        $query->setLimit($limit);
+        $query->setOffset($offset);
+        return $query->execute();
+    }
 }

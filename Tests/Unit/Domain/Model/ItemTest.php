@@ -30,162 +30,302 @@ namespace Pixelant\PxaItemList\Tests\Unit\Domain\Model;
  * Test case for class \Pixelant\PxaItemList\Domain\Model\Item.
  *
  * @copyright Copyright belongs to the respective authors
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @license   http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  * @author Pixelant <info@pixelant.se>
  */
-class ItemTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
-	/**
-	 * @var \Pixelant\PxaItemList\Domain\Model\Item
-	 */
-	protected $subject = NULL;
+class ItemTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+{
+    /**
+     * @var \Pixelant\PxaItemList\Domain\Model\Item
+     */
+    protected $subject = null;
 
-	public function setUp() {
-		$this->subject = new \Pixelant\PxaItemList\Domain\Model\Item();
-	}
+    public function setUp()
+    {
+        $this->subject = new \Pixelant\PxaItemList\Domain\Model\Item();
+    }
 
-	public function tearDown() {
-		unset($this->subject);
-	}
+    public function tearDown()
+    {
+        unset($this->subject);
+    }
 
-	/**
-	 * @test
-	 */
-	public function getNameReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getName()
-		);
-	}
+    /**
+     * @test
+     */
+    public function getNameReturnsInitialValueForString()
+    {
+        $this->assertSame(
+            '',
+            $this->subject->getName()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setNameForStringSetsName() {
-		$this->subject->setName('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function setNameForStringSetsName()
+    {
+        $this->subject->setName('Conceived at T3CON10');
 
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'name',
-			$this->subject
-		);
-	}
+        $this->assertAttributeEquals(
+            'Conceived at T3CON10',
+            'name',
+            $this->subject
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function getDescriptionReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getDescription()
-		);
-	}
+    /**
+     * @test
+     */
+    public function getYearReturnsInitialValueForString()
+    {
+        $this->assertSame(
+            '',
+            $this->subject->getYear()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setDescriptionForStringSetsDescription() {
-		$this->subject->setDescription('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function setYearForStringSetsYear()
+    {
+        $this->subject->setYear(1999);
 
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'description',
-			$this->subject
-		);
-	}
+        $this->assertAttributeEquals(
+            1999,
+            'year',
+            $this->subject
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function getImageReturnsInitialValueForFileReference() {
-		$this->assertEquals(
-			NULL,
-			$this->subject->getImage()
-		);
-	}
+    /**
+     * @test
+     */
+    public function getCustomerReturnsInitialValueForString()
+    {
+        $this->assertSame(
+            '',
+            $this->subject->getCustomer()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setImageForFileReferenceSetsImage() {
-		$fileReferenceFixture = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
-		$this->subject->setImage($fileReferenceFixture);
+    /**
+     * @test
+     */
+    public function setCustomerForStringSetsCustomer()
+    {
+        $this->subject->setCustomer('Conceived at T3CON10');
 
-		$this->assertAttributeEquals(
-			$fileReferenceFixture,
-			'image',
-			$this->subject
-		);
-	}
+        $this->assertAttributeEquals(
+            'Conceived at T3CON10',
+            'customer',
+            $this->subject
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function getPdfReturnsInitialValueForFileReference() {
-		$this->assertEquals(
-			NULL,
-			$this->subject->getPdf()
-		);
-	}
+    /**
+     * @test
+     */
+    public function getProductChoiceReturnsInitialValueForString()
+    {
+        $this->assertSame(
+            '',
+            $this->subject->getProductChoice()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setPdfForFileReferenceSetsPdf() {
-		$fileReferenceFixture = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
-		$this->subject->setPdf($fileReferenceFixture);
+    /**
+     * @test
+     */
+    public function setProductChoiceForStringSetsProductChoice()
+    {
+        $this->subject->setProductChoice('Conceived at T3CON10');
 
-		$this->assertAttributeEquals(
-			$fileReferenceFixture,
-			'pdf',
-			$this->subject
-		);
-	}
+        $this->assertAttributeEquals(
+            'Conceived at T3CON10',
+            'productChoice',
+            $this->subject
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function getIssuuConfigIdReturnsInitialValueForString() {
-		$this->assertSame(
-			'',
-			$this->subject->getIssuuConfigId()
-		);
-	}
+    /**
+     * @test
+     */
+    public function getArchitectReturnsInitialValueForString()
+    {
+        $this->assertSame(
+            '',
+            $this->subject->getArchitect()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setIssuuConfigIdForStringSetsIssuuConfigId() {
-		$this->subject->setIssuuConfigId('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function setArchitectForStringSetsArchitect()
+    {
+        $this->subject->setArchitect('Conceived at T3CON10');
 
-		$this->assertAttributeEquals(
-			'Conceived at T3CON10',
-			'issuuConfigId',
-			$this->subject
-		);
-	}
+        $this->assertAttributeEquals(
+            'Conceived at T3CON10',
+            'architect',
+            $this->subject
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function getDateReturnsInitialValueForDateTime() {
-		$this->assertEquals(
-			NULL,
-			$this->subject->getDate()
-		);
-	}
+    /**
+     * @test
+     */
+    public function getConsultantReturnsInitialValueForString()
+    {
+        $this->assertSame(
+            '',
+            $this->subject->getConsultant()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setDateForDateTimeSetsDate() {
-		$dateTimeFixture = new \DateTime();
-		$this->subject->setDate($dateTimeFixture);
+    /**
+     * @test
+     */
+    public function setConsultantForStringSetsConsultant()
+    {
+        $this->subject->setConsultant('Conceived at T3CON10');
 
-		$this->assertAttributeEquals(
-			$dateTimeFixture,
-			'date',
-			$this->subject
-		);
-	}
+        $this->assertAttributeEquals(
+            'Conceived at T3CON10',
+            'consultant',
+            $this->subject
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getInstallerReturnsInitialValueForString()
+    {
+        $this->assertSame(
+            '',
+            $this->subject->getInstaller()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setInstallerForStringSetsInstaller()
+    {
+        $this->subject->setInstaller('Conceived at T3CON10');
+
+        $this->assertAttributeEquals(
+            'Conceived at T3CON10',
+            'installer',
+            $this->subject
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getDescriptionReturnsInitialValueForString()
+    {
+        $this->assertSame(
+            '',
+            $this->subject->getDescription()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setDescriptionForStringSetsDescription()
+    {
+        $this->subject->setDescription('Conceived at T3CON10');
+
+        $this->assertAttributeEquals(
+            'Conceived at T3CON10',
+            'description',
+            $this->subject
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getImageReturnsInitialValueForFileReference()
+    {
+        $this->assertEquals(
+            null,
+            $this->subject->getImage()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setImageForFileReferenceSetsImage()
+    {
+        $fileReferenceFixture = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
+        $this->subject->setImage($fileReferenceFixture);
+
+        $this->assertAttributeEquals(
+            $fileReferenceFixture,
+            'image',
+            $this->subject
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getPdfReturnsInitialValueForFileReference()
+    {
+        $this->assertEquals(
+            null,
+            $this->subject->getPdf()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setPdfForFileReferenceSetsPdf()
+    {
+        $fileReferenceFixture = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
+        $this->subject->setPdf($fileReferenceFixture);
+
+        $this->assertAttributeEquals(
+            $fileReferenceFixture,
+            'pdf',
+            $this->subject
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getDateReturnsInitialValueForDateTime()
+    {
+        $this->assertEquals(
+            null,
+            $this->subject->getDate()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setDateForDateTimeSetsDate()
+    {
+        $dateTimeFixture = new \DateTime();
+        $this->subject->setDate($dateTimeFixture);
+
+        $this->assertAttributeEquals(
+            $dateTimeFixture,
+            'date',
+            $this->subject
+        );
+    }
 }

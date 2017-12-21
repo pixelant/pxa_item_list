@@ -7,10 +7,15 @@ CREATE TABLE tx_pxaitemlist_domain_model_item (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	name varchar(255) DEFAULT '' NOT NULL,
+	year int(11) unsigned DEFAULT '0' NOT NULL,
+	customer varchar(255) DEFAULT '' NOT NULL,
+	product_choice varchar(255) DEFAULT '' NOT NULL,
+	architect varchar(255) DEFAULT '' NOT NULL,
+	consultant varchar(255) DEFAULT '' NOT NULL,
+	installer varchar(255) DEFAULT '' NOT NULL,
 	description text NOT NULL,
 	image int(11) unsigned NOT NULL default '0',
 	pdf int(11) unsigned NOT NULL default '0',
-	issuu_config_id varchar(255) DEFAULT '' NOT NULL,
 	date int(11) DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
@@ -48,5 +53,3 @@ CREATE TABLE tx_pxaitemlist_domain_model_item (
 CREATE TABLE tx_pxaitemlist_domain_model_item (
 	categories int(11) unsigned DEFAULT '0' NOT NULL,
 );
-
-## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder

@@ -1,55 +1,6 @@
-
-plugin.tx_pxaitemlist_item {
-	view {
-		templateRootPath = {$plugin.tx_pxaitemlist_item.view.templateRootPath}
-		partialRootPath = {$plugin.tx_pxaitemlist_item.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_pxaitemlist_item.view.layoutRootPath}
-	}
-	persistence {
-		storagePid = {$plugin.tx_pxaitemlist_item.persistence.storagePid}
-	}
-}
-
-plugin.tx_pxaitemlist._CSS_DEFAULT_STYLE (
-	textarea.f3-form-error {
-		background-color:#FF9F9F;
-		border: 1px #FF0000 solid;
-	}
-
-	input.f3-form-error {
-		background-color:#FF9F9F;
-		border: 1px #FF0000 solid;
-	}
-
-	.tx-pxa-item-list table {
-		border-collapse:separate;
-		border-spacing:10px;
-	}
-
-	.tx-pxa-item-list table th {
-		font-weight:bold;
-	}
-
-	.tx-pxa-item-list table td {
-		vertical-align:top;
-	}
-
-	.typo3-messages .message-error {
-		color:red;
-	}
-
-	.typo3-messages .message-ok {
-		color:green;
-	}
-
-)
-
-## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
-plugin.tx_pxaitemlist._CSS_DEFAULT_STYLE >
 plugin.tx_pxaitemlist_item {
     # Remove persistence setting so extbase will use recode page from content element
     persistence >
-    view >
     view {
         templateRootPaths {
             default = {$plugin.tx_pxaitemlist_item.view.templateRootPath}
@@ -67,45 +18,43 @@ plugin.tx_pxaitemlist_item {
         }
         filter {
             class =
-            classFilter = btn-default
-            classFilterActive = btn-primary
+            wrapperClass = filter-wrapper
+            column = col-md-6
+            categoryColumns = 2
+            maxColumnItem = 6
         }
         detail {
             image {
                 width = 600
-                height = 600
+                height = 400
             }
+            heightDesktop = 400
+            heightMobile = 300
+
+            smallMobilePreviewHeightFix = 26
+            smallDesktopPreviewHeightFix = 26
+
+            definitionClass = dl-horizontal
         }
         list {
             class = row
             item {
                 image {
-                    width = 300c
-                    height = 300c
+                    width = 370
+                    height = 370
                     no-image = EXT:pxa_item_list/Resources/Public/Images/no-image.png
                 }
-                class = item col-md-3 col-sm-6 col-xs-12
+                classsss = item col-lg-3 col-md-4 col-sm-6 col-xs-12
+                height = 350
+                width = 350
+                columnPositionClearfix = 3
             }
         }
-        promotion {
-            item {
-                image {
-                    width = 360c
-                    height = 575c
-                    no-image = EXT:pxa_item_list/Resources/Public/Images/no-image.png
-                }
-            }
-        }
-        latest {
-            class = row
-            item {
-                image {
-                    width = 300c
-                    height = 300c
-                    no-image = EXT:pxa_item_list/Resources/Public/Images/no-image.png
-                }
-                class = item col-md-3 col-sm-6 col-xs-12
-            }
+        translateJsLabels {
+            1 = label.none
         }
 	}
 }
+
+# Include css
+page.includeCSS.pxa_item_list= EXT:pxa_item_list/Resources/Public/Css/pxa_item_list.css

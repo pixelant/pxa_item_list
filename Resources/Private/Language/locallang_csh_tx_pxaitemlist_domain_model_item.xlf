@@ -6,6 +6,24 @@
 			<trans-unit id="name.description">
 				<source>Name</source>
 			</trans-unit>
+			<trans-unit id="year.description">
+				<source>Year</source>
+			</trans-unit>
+			<trans-unit id="customer.description">
+				<source>Customer</source>
+			</trans-unit>
+			<trans-unit id="product_choice.description">
+				<source>Product choice</source>
+			</trans-unit>
+			<trans-unit id="architect.description">
+				<source>Architect</source>
+			</trans-unit>
+			<trans-unit id="consultant.description">
+				<source>Consultant</source>
+			</trans-unit>
+			<trans-unit id="installer.description">
+				<source>Installer</source>
+			</trans-unit>
 			<trans-unit id="description.description">
 				<source>description</source>
 			</trans-unit>
@@ -14,9 +32,6 @@
 			</trans-unit>
 			<trans-unit id="pdf.description">
 				<source>PDF file</source>
-			</trans-unit>
-			<trans-unit id="issuu_config_id.description">
-				<source>Issuu configid (the value in the data-configid attribute)</source>
 			</trans-unit>
 			<trans-unit id="date.description">
 				<source>Date</source>
