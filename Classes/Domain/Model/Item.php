@@ -115,6 +115,27 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $date = null;
 
     /**
+     * Item Construct
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //Do not remove the next line: It would break the functionality
+        $this->initStorageObjects();
+    }
+
+    /**
+     * Initializes all ObjectStorage properties.
+     *
+     * @return void
+     */
+    protected function initStorageObjects()
+    {
+        $this->image = new ObjectStorage();
+        $this->categories = new ObjectStorage();
+    }
+    /**
      * Returns the name
      *
      * @return string $name
