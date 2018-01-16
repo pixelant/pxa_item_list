@@ -19,4 +19,25 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
         $defaultQuerySettings->setStoragePageIds([136]);
         $defaultQuerySettings->setRespectStoragePage(false);
     }
+
+
+    /**
+     * Find categories by parent category
+     * This is mostly used for navigation, so we need possibility to set direction
+     *
+     * @param mixed $parentCategory
+     * @param array $ordering
+     * @return QueryResultInterface
+     */
+    public function findByParent($parentCategory, array $ordering = [])
+    {
+        $query = $this->createQuery();
+
+        $query->matching($query->equals('parent', $parentCategory));
+        if (!empty($ordering)) {
+            $query->setOrderings($ordering);
+        }
+
+        return $query->execute();
+    }
 }

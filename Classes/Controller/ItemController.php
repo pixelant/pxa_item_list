@@ -69,10 +69,24 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             );
         }
         $items = $this->itemRepository->findAll();
+        $cat = $this->categoryRepository->findAll();
+        /*
+        // @TODO: Start of debug, remember to remove when debug is done!
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump(
+           array(
+               'details' => array('@' => date('Y-m-d H:i:s'), 'class' => __CLASS__, 'function' => __FUNCTION__, 'file' => __FILE__, 'line' => __LINE__),
+                'items' => $items,
+                'test'=> $this->categoryRepository->findByParent(9),
+            )
+            ,date('Y-m-d H:i:s') . ' : ' . __METHOD__ . ' : ' . __LINE__
+        );
+        // @TODO: End of debug, remember to remove when debug is done!
+        */
 
         $this->getItemListLabels($pageRenderer);
 
         $this->view->assign('items', $items);
+
         $this->view->assign('filterCategories', $this->getFilterCategories($items));
     }
 
@@ -139,20 +153,35 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         if (empty($categoryColumns)) {
             $categoryColumns = 4;
         }
-
+        
         $filterCategories[0]['category'] = $this->categoryRepository->findByUid(
             $this->settings['filterCategory1']
         );
         $subCategories = $this->categoryRepository->findByParent(
-            $this->settings['filterCategory1']
+            (int)($this->settings['filterCategory1'])
         );
         $subCategoriesCount = count($subCategories);
         $filterCategories[0]['subCategories'] = $subCategories;
+
         // filter out categories bot in any itemscol-md-12
         $filterCategories[0]['subCategories'] = $this->getItemCategories(
             $items,
             $filterCategories[0]['subCategories']
         );
+
+/*
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump(
+            array(
+                'details' => array('@' => date('Y-m-d H:i:s'), 'class' => __class__, 'function' => __FUNCTION__, 'file' => __FILE__, 'line' => __LINE__),
+                'settings' => $this->settings,
+                '$filterCategories' => $filterCategories,
+                '(int)($this->settings[filterCategory1 ])' => (int)($this->settings['filterCategory1']),
+                'subCategories' => $subCategories
+
+            ),
+            date('Y-m-d H:i:s') . ' : ' . __METHOD__ . ' : ' . __LINE__
+        );*/
+        
 
         if ($subCategoriesCount > 12 / $categoryColumns) {
             $filterCategories[0]['maxColumnItem'] = $subCategoriesCount % $categoryColumns === 0 ?
@@ -160,7 +189,7 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         }
 
         $filterCategories[1]['category'] = $this->categoryRepository->findByUid($this->settings['filterCategory2']);
-        $subCategories = $this->categoryRepository->findByParent($this->settings['filterCategory2']);
+        $subCategories = $this->categoryRepository->findByParent(intval($this->settings['filterCategory2']));
         $filterCategories[1]['subCategories'] = $subCategories;
         // filter out categories bot in any items
         $filterCategories[1]['subCategories'] = $this->getItemCategories(
@@ -174,6 +203,19 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 $subCategoriesCount / $categoryColumns : intval($subCategoriesCount / $categoryColumns) + 1;
         }
 
+/*        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump(
+            array(
+                'details' => array('@' => date('Y-m-d H:i:s'), 'class' => __class__, 'function' => __FUNCTION__, 'file' => __FILE__, 'line' => __LINE__),
+                'settings' => $this->settings,
+                '$filterCategories'=> $filterCategories,
+                '(int)($this->settings[filterCategory1 ])'=> (int)($this->settings['filterCategory1']),
+                'subCategories' => $subCategories
+
+            ),
+            date('Y-m-d H:i:s') . ' : ' . __METHOD__ . ' : ' . __LINE__
+        );
+*/ 
+        
         return $filterCategories;
     }
 }

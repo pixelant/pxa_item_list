@@ -6,7 +6,7 @@ namespace Pixelant\PxaItemList\Domain\Model;
  */
 class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
 {
-    function __construct()
+    public function __construct()
     {
         $this->categories = new ObjectStorage();
     }
