@@ -24,8 +24,3 @@ $pluginSignature = str_replace('_', '', $_EXTKEY) . '_item';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages(
     'tx_pxaitemlist_domain_model_item'
 );
-
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::makeCategorizable(
-    $_EXTKEY,
-    'tx_pxaitemlist_domain_model_item'
-);
