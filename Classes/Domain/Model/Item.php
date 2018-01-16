@@ -34,7 +34,7 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Categories
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pixelant\PxaItemList\Domain\Model\Category>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
      */
     protected $categories = null;
 
@@ -348,7 +348,7 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Adds a Category
      *
-     * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pixelant\PxaItemList\Domain\Model\Category> $category
+     * @param  \TYPO3\CMS\Extbase\Domain\Model\Category $category
      * @return void
      */
     public function addCategory(\TYPO3\CMS\Extbase\Domain\Model\Category $category)
@@ -359,7 +359,7 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Removes a Category
      *
-     * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pixelant\PxaItemList\Domain\Model\Category> $categoryToRemove
+     * @param  \TYPO3\CMS\Extbase\Domain\Model\Category $categoryToRemove The Category to be removed
      * @return void
      */
     public function removeCategory(\TYPO3\CMS\Extbase\Domain\Model\Category $categoryToRemove)
@@ -375,6 +375,10 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getCategoriesUidList()
     {
         $cateroiesUids = [];
+
+        /**
+ * @var Category $category
+*/
         foreach ($this->getCategories() as $category) {
             $cateroiesUids[] = $category->getUid();
         }
@@ -390,6 +394,10 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getCategoriesTitleList()
     {
         $cateroiesTitles = [];
+
+        /**
+ * @var Category $category
+*/
         foreach ($this->getCategories() as $category) {
             $cateroiesTitles[] = $category->getTitle();
         }
@@ -400,7 +408,7 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the categories
      *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pixelant\PxaItemList\Domain\Model\Category> $categories
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category> $categories
      */
     public function getCategories()
     {
@@ -410,7 +418,7 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the categories
      *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Pixelant\PxaItemList\Domain\Model\Category> $categories
+     * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category> $categories
      * @return void
      */
     public function setCategories(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories)

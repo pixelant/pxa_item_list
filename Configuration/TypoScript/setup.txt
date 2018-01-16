@@ -53,17 +53,7 @@ plugin.tx_pxaitemlist_item {
         translateJsLabels {
             1 = label.none
         }
-    }
-
-    # map back your model to extbase category table
-    persistence.classes {
-        Pixelant\PxaItemList\Domain\Model\Category {
-            mapping {
-                recordType = 0
-                    tableName = sys_category
-            }
-        }
-    }
+	}
 }
 
 # Include css

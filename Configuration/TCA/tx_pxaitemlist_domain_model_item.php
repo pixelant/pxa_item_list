@@ -33,8 +33,7 @@ return array(
         '1' => array(
             'showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name,'.
             ' year, customer, product_choice, architect, consultant, installer, description, image,'.
-            ' pdf, date, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime,'.
-            ' --div--;LLL:EXT:lang/locallang_tca.xlf:sys_category.tabs.category, categories'
+            ' pdf, date, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'
         ),
     ),
     'palettes' => array(

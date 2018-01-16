@@ -45,7 +45,7 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * categoryRepository
      *
-     * @var    \Pixelant\PxaItemList\Domain\Repository\CategoryRepository
+     * @var    \TYPO3\CMS\Extbase\Domain\Repository\CategoryRepository
      * @inject
      */
     protected $categoryRepository = null;

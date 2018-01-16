@@ -6,7 +6,6 @@ CREATE TABLE tx_pxaitemlist_domain_model_item (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-	categories int(11) unsigned DEFAULT '0' NOT NULL,
 	name varchar(255) DEFAULT '' NOT NULL,
 	year int(11) unsigned DEFAULT '0' NOT NULL,
 	customer varchar(255) DEFAULT '' NOT NULL,
@@ -46,4 +45,11 @@ CREATE TABLE tx_pxaitemlist_domain_model_item (
 	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
  KEY language (l10n_parent,sys_language_uid)
 
+);
+
+#
+# Table structure for table 'tx_pxaitemlist_domain_model_item'
+#
+CREATE TABLE tx_pxaitemlist_domain_model_item (
+	categories int(11) unsigned DEFAULT '0' NOT NULL,
 );
