@@ -16,7 +16,7 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
         /** @var $defaultQuerySettings \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings */
         $defaultQuerySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
         // add the pid constraint
-        $defaultQuerySettings->setRespectStoragePage(true);
         $defaultQuerySettings->setStoragePageIds([136]);
+        $defaultQuerySettings->setRespectStoragePage(false);
     }
 }
