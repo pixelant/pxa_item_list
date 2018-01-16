@@ -18,12 +18,5 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
         // add the pid constraint
         $defaultQuerySettings->setRespectStoragePage(true);
         $defaultQuerySettings->setStoragePageIds([136]);
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump(
-            array(
-                'details' => array('@' => date('Y-m-d H:i:s'), 'class' => __class__, 'function' => __FUNCTION__, 'file' => __FILE__, 'line' => __LINE__),
-                'defaultQuerySettings' => $defaultQuerySettings,
-            ),
-            date('Y-m-d H:i:s') . ' : ' . __METHOD__ . ' : ' . __LINE__
-        );
     }
 }
