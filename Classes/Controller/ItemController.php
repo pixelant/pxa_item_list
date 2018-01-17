@@ -175,7 +175,6 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $filterCategory['subGridClassValue'] = $columnGridMaxValue / $filterCategory['columns'];
         }
 
-        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($filterCategories,'Debug',16);
         return $filterCategories;
     }
 
