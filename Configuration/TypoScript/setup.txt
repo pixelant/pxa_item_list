@@ -17,6 +17,7 @@ plugin.tx_pxaitemlist_item {
             class =
             wrapperClass = filter-wrapper
             columnClassPrefix = col-md-
+            columnGridMaxValue = 12
             maxColumnItem = 5
         }
         detail {

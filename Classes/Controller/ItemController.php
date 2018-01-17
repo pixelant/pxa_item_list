@@ -129,6 +129,8 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function getFilterCategories($items)
     {
         $availableCategories = $this->getListOfVisibleCategories($items);
+        $maxItemsInColumn = (int)$this->settings['filter']['maxColumnItem'] ?: 5;
+        $columnGridMaxValue = (int)$this->settings['filter']['columnGridMaxValue'] ?: 12;
 
         $filterCategories = [];
         $parentCategoriesUids = [
@@ -136,6 +138,7 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $this->settings['filterCategory2']
         ];
 
+        $totalColumns = 0;
         foreach ($parentCategoriesUids as $parentCategoriesUid) {
             /** @var Category $parentCategory */
             $parentCategory = $this->categoryRepository->findByUid($parentCategoriesUid);
@@ -156,8 +159,23 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                     $filterCategories[$parentCategory->getUid()]['subCategories'][$subCategory->getUid()] = $subCategory;
                 }
             }
+            $columns = 1;
+            $countSubCategories = count($filterCategories[$parentCategory->getUid()]['subCategories']);
+            if ($countSubCategories > 0) {
+                $columns = (int)ceil($countSubCategories / $maxItemsInColumn);
+            }
+            $filterCategories[$parentCategory->getUid()]['columns'] = $columns;
+            $totalColumns += $columns;
         }
 
+
+        // Now count grid value for each category
+        foreach ($filterCategories as &$filterCategory) {
+            $filterCategory['parentGridClassValue'] = $columnGridMaxValue / $totalColumns * $filterCategory['columns'];
+            $filterCategory['subGridClassValue'] = $columnGridMaxValue / $filterCategory['columns'];
+        }
+
+        \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($filterCategories,'Debug',16);
         return $filterCategories;
     }
 
