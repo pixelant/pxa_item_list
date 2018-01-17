@@ -25,7 +25,10 @@ namespace Pixelant\PxaItemList\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use Pixelant\PxaItemList\Domain\Model\Item;
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Domain\Model\Category;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
@@ -57,20 +60,9 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function listAction()
     {
-        if ($this->settings['js']['dontInlcudeInController'] != 1) {
-            $pageRenderer = GeneralUtility::makeInstance(
-                \TYPO3\CMS\Core\Page\PageRenderer::class
-            );
-            $pageRenderer->addJsFooterFile(
-                'typo3conf/ext/pxa_item_list/Resources/Public/Js/pxa_filtering.js'
-            );
-            $pageRenderer->addJsFooterFile(
-                'typo3conf/ext/pxa_item_list/Resources/Public/Js/pxa_item_list.js'
-            );
-        }
         $items = $this->itemRepository->findAll();
 
-        $this->getItemListLabels($pageRenderer);
+        $this->getItemListLabels();
 
         $this->view->assign('items', $items);
         $this->view->assign('filterCategories', $this->getFilterCategories($items));
@@ -81,10 +73,13 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      *
      * @return void
      */
-    protected function getItemListLabels($pageRenderer)
+    protected function getItemListLabels()
     {
         static $jsLabelsAdded;
         if ($jsLabelsAdded === null) {
+            /** @var PageRenderer $pageRenderer */
+            $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+
             $labelsJs = [];
             if (is_array($this->settings['translateJsLabels'])) {
                 foreach ($this->settings['translateJsLabels'] as $translateJsLabelSet) {
@@ -133,47 +128,73 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function getFilterCategories($items)
     {
+        $availableCategories = $this->getListOfVisibleCategories($items);
+        $maxItemsInColumn = (int)$this->settings['filter']['maxColumnItem'] ?: 5;
+        $columnGridMaxValue = (int)$this->settings['filter']['columnGridMaxValue'] ?: 12;
+
         $filterCategories = [];
-        $categoryColumns = intval($this->settings['filter']['categoryColumns']);
+        $parentCategoriesUids = [
+            $this->settings['filterCategory1'],
+            $this->settings['filterCategory2']
+        ];
 
-        if (empty($categoryColumns)) {
-            $categoryColumns = 4;
+        $totalColumns = 0;
+        foreach ($parentCategoriesUids as $parentCategoriesUid) {
+            /** @var Category $parentCategory */
+            $parentCategory = $this->categoryRepository->findByUid($parentCategoriesUid);
+            if ($parentCategory === null) {
+                continue;
+            }
+
+            $filterCategories[$parentCategory->getUid()] = [
+                'category' => $parentCategory,
+                'subCategories' => []
+            ];
+            /** @noinspection PhpUndefinedMethodInspection */
+            $subCategories = $this->categoryRepository->findByParent($parentCategory->getUid());
+
+            /** @var Category $subCategory */
+            foreach ($subCategories as $subCategory) {
+                if (in_array($subCategory->getUid(), $availableCategories)) {
+                    $filterCategories[$parentCategory->getUid()]['subCategories'][$subCategory->getUid()] = $subCategory;
+                }
+            }
+            $columns = 1;
+            $countSubCategories = count($filterCategories[$parentCategory->getUid()]['subCategories']);
+            if ($countSubCategories > 0) {
+                $columns = (int)ceil($countSubCategories / $maxItemsInColumn);
+            }
+            $filterCategories[$parentCategory->getUid()]['columns'] = $columns;
+            $totalColumns += $columns;
         }
 
-        $filterCategories[0]['category'] = $this->categoryRepository->findByUid(
-            $this->settings['filterCategory1']
-        );
-        $subCategories = $this->categoryRepository->findByParent(
-            $this->settings['filterCategory1']
-        );
-        $subCategoriesCount = count($subCategories);
-        $filterCategories[0]['subCategories'] = $subCategories;
-        // filter out categories bot in any itemscol-md-12
-        $filterCategories[0]['subCategories'] = $this->getItemCategories(
-            $items,
-            $filterCategories[0]['subCategories']
-        );
 
-        if ($subCategoriesCount > 12 / $categoryColumns) {
-            $filterCategories[0]['maxColumnItem'] = $subCategoriesCount % $categoryColumns === 0 ?
-                $subCategoriesCount / $categoryColumns : intval($subCategoriesCount / $categoryColumns) + 1;
-        }
-
-        $filterCategories[1]['category'] = $this->categoryRepository->findByUid($this->settings['filterCategory2']);
-        $subCategories = $this->categoryRepository->findByParent($this->settings['filterCategory2']);
-        $filterCategories[1]['subCategories'] = $subCategories;
-        // filter out categories bot in any items
-        $filterCategories[1]['subCategories'] = $this->getItemCategories(
-            $items,
-            $filterCategories[1]['subCategories']
-        );
-        $subCategoriesCount = count($subCategories);
-
-        if ($subCategoriesCount > 12 / $categoryColumns) {
-            $filterCategories[1]['maxColumnItem'] = $subCategoriesCount % $categoryColumns === 0 ?
-                $subCategoriesCount / $categoryColumns : intval($subCategoriesCount / $categoryColumns) + 1;
+        // Now count grid value for each category
+        foreach ($filterCategories as &$filterCategory) {
+            $filterCategory['parentGridClassValue'] = $columnGridMaxValue / $totalColumns * $filterCategory['columns'];
+            $filterCategory['subGridClassValue'] = $columnGridMaxValue / $filterCategory['columns'];
         }
 
         return $filterCategories;
+    }
+
+    /**
+     * Generate array of available categories
+     *
+     * @param $items
+     * @return array
+     */
+    protected function getListOfVisibleCategories($items)
+    {
+        $list = [];
+        /** @var Item $item */
+        foreach ($items as $item) {
+            /** @var Category $category */
+            foreach ($item->getCategories() as $category) {
+                $list[] = $category->getUid();
+            }
+        }
+
+        return array_unique($list);
     }
 }
