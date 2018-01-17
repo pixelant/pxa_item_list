@@ -171,7 +171,7 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
         // Now count grid value for each category
         foreach ($filterCategories as &$filterCategory) {
-            $filterCategory['parentGridClassValue'] = $columnGridMaxValue / $totalColumns * $filterCategory['columns'];
+            $filterCategory['parentGridClassValue'] = (int)round($columnGridMaxValue / $totalColumns * $filterCategory['columns']);
             $filterCategory['subGridClassValue'] = $columnGridMaxValue / $filterCategory['columns'];
         }
 
