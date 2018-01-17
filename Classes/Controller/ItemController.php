@@ -25,6 +25,7 @@ namespace Pixelant\PxaItemList\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
@@ -57,20 +58,9 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function listAction()
     {
-        if ($this->settings['js']['dontInlcudeInController'] != 1) {
-            $pageRenderer = GeneralUtility::makeInstance(
-                \TYPO3\CMS\Core\Page\PageRenderer::class
-            );
-            $pageRenderer->addJsFooterFile(
-                'typo3conf/ext/pxa_item_list/Resources/Public/Js/pxa_filtering.js'
-            );
-            $pageRenderer->addJsFooterFile(
-                'typo3conf/ext/pxa_item_list/Resources/Public/Js/pxa_item_list.js'
-            );
-        }
         $items = $this->itemRepository->findAll();
 
-        $this->getItemListLabels($pageRenderer);
+        $this->getItemListLabels();
 
         $this->view->assign('items', $items);
         $this->view->assign('filterCategories', $this->getFilterCategories($items));
@@ -81,10 +71,13 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      *
      * @return void
      */
-    protected function getItemListLabels($pageRenderer)
+    protected function getItemListLabels()
     {
         static $jsLabelsAdded;
         if ($jsLabelsAdded === null) {
+            /** @var PageRenderer $pageRenderer */
+            $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+
             $labelsJs = [];
             if (is_array($this->settings['translateJsLabels'])) {
                 foreach ($this->settings['translateJsLabels'] as $translateJsLabelSet) {

@@ -13,9 +13,6 @@ plugin.tx_pxaitemlist_item {
         }
     }
     settings {
-        js {
-            dontInlcudeInController = 0
-        }
         filter {
             class =
             wrapperClass = filter-wrapper
@@ -58,3 +55,6 @@ plugin.tx_pxaitemlist_item {
 
 # Include css
 page.includeCSS.pxa_item_list= EXT:pxa_item_list/Resources/Public/Css/pxa_item_list.css
+
+page.includeJSFooterlibs.pxaFiltering = EXT:pxa_item_list/Resources/Public/Js/pxa_filtering.js
+page.includeJSFooter.pxaItemList = EXT:pxa_item_list/Resources/Public/Js/pxa_item_list.js
