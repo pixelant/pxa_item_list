@@ -39,6 +39,6 @@ class IsNewColumnViewHelper extends AbstractViewHelper
         $index = (int)$arguments['index'];
         $maxColumnItem = (int)$arguments['maxColumnItem'] ?: (int)$arguments['defaultColumnItem'];
 
-        return $index > 0 && is_int($index / $maxColumnItem);
+        return $index > 0 && ($index % $maxColumnItem === 0);
     }
 }
