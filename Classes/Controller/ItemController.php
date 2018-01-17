@@ -25,8 +25,10 @@ namespace Pixelant\PxaItemList\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use Pixelant\PxaItemList\Domain\Model\Item;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Domain\Model\Category;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
@@ -126,47 +128,56 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function getFilterCategories($items)
     {
+        $availableCategories = $this->getListOfVisibleCategories($items);
+
         $filterCategories = [];
-        $categoryColumns = intval($this->settings['filter']['categoryColumns']);
+        $parentCategoriesUids = [
+            $this->settings['filterCategory1'],
+            $this->settings['filterCategory2']
+        ];
 
-        if (empty($categoryColumns)) {
-            $categoryColumns = 4;
-        }
+        foreach ($parentCategoriesUids as $parentCategoriesUid) {
+            /** @var Category $parentCategory */
+            $parentCategory = $this->categoryRepository->findByUid($parentCategoriesUid);
+            if ($parentCategory === null) {
+                continue;
+            }
 
-        $filterCategories[0]['category'] = $this->categoryRepository->findByUid(
-            $this->settings['filterCategory1']
-        );
-        $subCategories = $this->categoryRepository->findByParent(
-            $this->settings['filterCategory1']
-        );
-        $subCategoriesCount = count($subCategories);
-        $filterCategories[0]['subCategories'] = $subCategories;
-        // filter out categories bot in any itemscol-md-12
-        $filterCategories[0]['subCategories'] = $this->getItemCategories(
-            $items,
-            $filterCategories[0]['subCategories']
-        );
+            $filterCategories[$parentCategory->getUid()] = [
+                'category' => $parentCategory,
+                'subCategories' => []
+            ];
+            /** @noinspection PhpUndefinedMethodInspection */
+            $subCategories = $this->categoryRepository->findByParent($parentCategory->getUid());
 
-        if ($subCategoriesCount > 12 / $categoryColumns) {
-            $filterCategories[0]['maxColumnItem'] = $subCategoriesCount % $categoryColumns === 0 ?
-                $subCategoriesCount / $categoryColumns : intval($subCategoriesCount / $categoryColumns) + 1;
-        }
-
-        $filterCategories[1]['category'] = $this->categoryRepository->findByUid($this->settings['filterCategory2']);
-        $subCategories = $this->categoryRepository->findByParent($this->settings['filterCategory2']);
-        $filterCategories[1]['subCategories'] = $subCategories;
-        // filter out categories bot in any items
-        $filterCategories[1]['subCategories'] = $this->getItemCategories(
-            $items,
-            $filterCategories[1]['subCategories']
-        );
-        $subCategoriesCount = count($subCategories);
-
-        if ($subCategoriesCount > 12 / $categoryColumns) {
-            $filterCategories[1]['maxColumnItem'] = $subCategoriesCount % $categoryColumns === 0 ?
-                $subCategoriesCount / $categoryColumns : intval($subCategoriesCount / $categoryColumns) + 1;
+            /** @var Category $subCategory */
+            foreach ($subCategories as $subCategory) {
+                if (in_array($subCategory->getUid(), $availableCategories)) {
+                    $filterCategories[$parentCategory->getUid()]['subCategories'][$subCategory->getUid()] = $subCategory;
+                }
+            }
         }
 
         return $filterCategories;
+    }
+
+    /**
+     * Generate array of available categories
+     *
+     * @param $items
+     * @return array
+     */
+    protected function getListOfVisibleCategories($items)
+    {
+        $list = [];
+        /** @var Item $item */
+        foreach ($items as $item) {
+            /** @var Category $category */
+            foreach ($item->getCategories() as $category) {
+                $list[] = $category->getUid();
+            }
+        }
+
+        return array_unique($list);
     }
 }

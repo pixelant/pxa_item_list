@@ -16,9 +16,8 @@ plugin.tx_pxaitemlist_item {
         filter {
             class =
             wrapperClass = filter-wrapper
-            column = col-md-6
-            categoryColumns = 2
-            maxColumnItem = 6
+            columnClassPrefix = col-md-
+            maxColumnItem = 5
         }
         detail {
             image {
