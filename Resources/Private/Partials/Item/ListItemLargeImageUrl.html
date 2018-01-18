@@ -1,10 +1,12 @@
 <f:spaceless>
-<f:if condition="{item.image}">
-    <f:then>
-        <f:uri.image src="{item.image.uid}" treatIdAsReference="1" maxWidth="{settings.detail.image.width}" maxHeight="{settings.detail.image.height}" />
-    </f:then>
-    <f:else>
-        <f:uri.image src="{settings.list.item.image.no-image}" maxWidth="{settings.detail.image.width}" maxHeight="{settings.detail.image.height}" />
-    </f:else>
-</f:if>
+    <f:alias map="{image: item.image.0}">
+        <f:if condition="{image}">
+            <f:then>
+                <f:uri.image image="{image}" maxWidth="{settings.detail.image.width}" maxHeight="{settings.detail.image.height}" />
+            </f:then>
+            <f:else>
+                <f:uri.image src="{settings.list.item.image.no-image}" maxWidth="{settings.detail.image.width}" maxHeight="{settings.detail.image.height}" />
+            </f:else>
+        </f:if>
+    </f:alias>
 </f:spaceless>
