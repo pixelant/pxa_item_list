@@ -25,6 +25,9 @@ namespace Pixelant\PxaItemList\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Extbase\Domain\Model\Category;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
 /**
  * Item
  */
@@ -96,7 +99,7 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Image
      *
-     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      */
     protected $image = null;
 
@@ -113,6 +116,11 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \DateTime
      */
     protected $date = null;
+
+    /**
+     * @var string
+     */
+    protected $year = '';
 
     /**
      * Item Construct
@@ -306,7 +314,7 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the image
      *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $image
      */
     public function getImage()
     {
@@ -316,10 +324,10 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the image
      *
-     * @param  \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
+     * @param  \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $image
      * @return void
      */
-    public function setImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image)
+    public function setImage(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $image)
     {
         $this->image = $image;
     }
@@ -376,9 +384,7 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $cateroiesUids = [];
 
-        /**
- * @var Category $category
-*/
+        /** @var Category $category */
         foreach ($this->getCategories() as $category) {
             $cateroiesUids[] = $category->getUid();
         }
@@ -395,9 +401,7 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $cateroiesTitles = [];
 
-        /**
- * @var Category $category
-*/
+        /** @var Category $category */
         foreach ($this->getCategories() as $category) {
             $cateroiesTitles[] = $category->getTitle();
         }
