@@ -99,31 +99,6 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * getItemCategories Loops through all items and collects categories
      *
-     * @param  \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $items Items to collect used categories from
-     * @return array           An array of used categories
-     */
-    private function getItemCategories($items, $subCategories)
-    {
-        $itemCategories = [];
-        foreach ($items as $item) {
-            foreach ($subCategories as $subCategory) {
-                foreach ($item->getCategories() as $category) {
-                    $title = $subCategory->getTitle();
-                    if ($title === $category->getTitle()) {
-                        if (!in_array($itemCategories)) {
-                            $itemCategories[$title] = $subCategory;
-                        }
-                    }
-                }
-            }
-        }
-
-        return $itemCategories;
-    }
-
-    /**
-     * getItemCategories Loops through all items and collects categories
-     *
      * @return array An array of used categories
      */
     public function getFilterCategories($items)
