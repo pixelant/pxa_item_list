@@ -3,12 +3,4 @@
 <f:section name="main">
     <f:render partial="Item/CategoryFilter" arguments="{settings: settings, filterCategories: filterCategories}" />
     <f:render partial="Item/ListItem" arguments="{items: items, settings: settings}" />
-
-    <div class="go-top text-center">
-        <a href="javascript:{}" class="btn btn-default text-center">
-            <f:translate key="label.go_top" />
-        </a>
-    </div>
-
-    <f:render partial="Item/PreviewTemplate" arguments="{settings: settings}" />
 </f:section>

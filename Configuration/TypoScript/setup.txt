@@ -14,24 +14,9 @@ plugin.tx_pxaitemlist_item {
     }
     settings {
         filter {
-            class =
-            wrapperClass = filter-wrapper
-            columnClassPrefix = col-md-
+            columnClassPrefix = col-sm-
             columnGridMaxValue = 12
             maxColumnItem = 5
-        }
-        detail {
-            image {
-                width = 600
-                height = 400
-            }
-            heightDesktop = 400
-            heightMobile = 300
-
-            smallMobilePreviewHeightFix = 26
-            smallDesktopPreviewHeightFix = 26
-
-            definitionClass = dl-horizontal
         }
         list {
             class = row
@@ -41,20 +26,16 @@ plugin.tx_pxaitemlist_item {
                     height = 370
                     no-image = EXT:pxa_item_list/Resources/Public/Images/no-image.png
                 }
-                classsss = item col-lg-3 col-md-4 col-sm-6 col-xs-12
-                height = 350
-                width = 350
                 columnPositionClearfix = 3
             }
         }
-        translateJsLabels {
-            1 = label.none
-        }
-	}
+	  }
 }
 
 # Include css
-page.includeCSS.pxa_item_list= EXT:pxa_item_list/Resources/Public/Css/pxa_item_list.css
 
-page.includeJSFooterlibs.pxaFiltering = EXT:pxa_item_list/Resources/Public/Js/pxa_filtering.js
-page.includeJSFooter.pxaItemList = EXT:pxa_item_list/Resources/Public/Js/pxa_item_list.js
+page.includeCSS.itemsList = EXT:pxa_item_list/Resources/Public/Css/itemsList.css
+
+# Include js
+
+page.includeJSFooterlibs.itemsList = EXT:pxa_item_list/Resources/Public/Js/itemsList.js
