@@ -1,4 +1,4 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:pxa="http://typo3.org/ns/Pixelant/PxaItemList/ViewHelpers" data-namespace-typo3-fluid="true">
 <div class="filter">
     <div class="container">
         <div class="row">
@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="{settings.filter.columnClassPrefix}{filterCategory.subGridClassValue}">
                                 <f:for each="{filterCategory.subCategories}" as="subCategory" iteration="i">
-                                    <f:if condition="{i.index} == {f:if(condition: settings.filter.maxColumnItem, then: settings.filter.maxColumnItem, else: '5')}">
+                                    <f:if condition="{pxa:isNewColumn(index: i.index, maxColumnItem: settings.filter.maxColumnItem)}">
                                         <f:render section="openCloseColumn"
                                                   arguments="{subGridClassValue: filterCategory.subGridClassValue}"/>
                                     </f:if>
