@@ -94,7 +94,16 @@ $(window).on('load', function () {
   */
 
   $target.on('click', function () {
-    $(this).parent().toggleClass('_item-open').siblings().removeClass('_item-open');
+    var $self = $(this);
+    $self.parent().toggleClass('_item-open').siblings().removeClass('_item-open');
+
+    /**
+    *  Sroll to the clicked element
+    */
+
+    $('html, body').animate({
+      scrollTop: $self.offset().top - 100 + 'px'
+    }, 600);
 
     /**
     *  Initilize swiper after item opened
