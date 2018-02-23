@@ -13,23 +13,33 @@
                     <div class="filtering-list__item-media"
                          style="background-image:url({f:render(partial: 'Item/ListItemLargeImageUrl', arguments: '{item: item}')})"></div>
                     <div class="filtering-list__item-description">
-                        <div class="close-preview js__close-preview"></div>
-                        <div class="item-description__scroll-helper">
-                            <div class="underline-heading">
-                                <h2 class="item-description__header">{item.name}</h2>
-                            </div>
-                            <f:for each="{categories: 'categoriesTitleList', customer: 'customer', product_choice: 'productChoice', architect: 'architect', consultant: 'consultant', installer: 'installer', description: 'description'}"
-                                    key="translateKey"
-                                    as="propertyName">
-                                <p>
-                                    <strong>
-                                        <f:translate key="tx_pxaitemlist_domain_model_item.{translateKey}"/>
-                                        :
-                                    </strong>
-                                    &nbsp;{item.{propertyName}}
-                                </p>
-                            </f:for>
-                        </div>
+												<div class="close-preview js__close-preview"></div>
+												<div class="scroll-control arrow-up">
+													<i class="icons icon-chevron-up"></i>
+												</div>
+												<div class="scroll-control arrow-down">
+														<i class="icons icon-chevron-down"></i>
+												</div>
+                        <div class="item-description__scroll-helper swiper-container js__item-description__scroll-helper">
+														<div class="swiper-wrapper">
+																 <div class="swiper-slide">
+																		<div class="underline-heading">
+																				<h2 class="item-description__header">{item.name}</h2>
+																		</div>
+																		<f:for each="{categories: 'categoriesTitleList', customer: 'customer', product_choice: 'productChoice', architect: 'architect', consultant: 'consultant', installer: 'installer', description: 'description'}"
+																						key="translateKey"
+																						as="propertyName">
+																				<p>
+																						<strong>
+																								<f:translate key="tx_pxaitemlist_domain_model_item.{translateKey}"/>
+																								:
+																						</strong>
+																						&nbsp;{item.{propertyName}}
+																				</p>
+																		</f:for>
+																</div>
+														</div>
+												</div>
                     </div>
                 </div>
             </div>

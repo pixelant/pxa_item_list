@@ -95,6 +95,17 @@ $(window).on('load', function () {
 
   $target.on('click', function () {
     $(this).parent().toggleClass('_item-open').siblings().removeClass('_item-open');
+
+    /**
+    *  Initilize swiper after item opened
+    */
+    var $sl = new Swiper($(this).parent().find('.js__item-description__scroll-helper'), {
+      direction: 'vertical',
+      slidesPerView: 'auto',
+      freeMode: true,
+      nextButton: $(this).parent().find('.arrow-down'),
+      prevButton: $(this).parent().find('.arrow-up')
+    })
   })
 
   /**
