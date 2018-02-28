@@ -13,7 +13,7 @@
 				<source>Year</source> <target state="translated">År</target>
 			</trans-unit>
 			<trans-unit id="tx_pxaitemlist_domain_model_item.categories" approved="yes">
-				<source>Categories</source> <target state="translated">Kategorier</target>
+				<source>Categories</source> <target state="translated">Kategori</target>
 			</trans-unit>
 			<trans-unit id="tx_pxaitemlist_domain_model_item.customer" approved="yes">
 				<source>Customer</source> <target state="translated">Beställare</target>
