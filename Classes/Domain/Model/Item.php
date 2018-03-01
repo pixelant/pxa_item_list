@@ -382,14 +382,14 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getCategoriesUidList()
     {
-        $cateroiesUids = [];
+        $categoriesUids = [];
 
         /** @var Category $category */
         foreach ($this->getCategories() as $category) {
-            $cateroiesUids[] = $category->getUid();
+            $categoriesUids[] = $category->getUid();
         }
 
-        return implode(',', $cateroiesUids);
+        return implode(',', $categoriesUids);
     }
 
     /**
@@ -399,14 +399,14 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function getCategoriesTitleList()
     {
-        $cateroiesTitles = [];
+        $categoriesTitles = [];
 
         /** @var Category $category */
         foreach ($this->getCategories() as $category) {
-            $cateroiesTitles[] = $category->getTitle();
+            $categoriesTitles[] = $category->getTitle();
         }
 
-        return implode(', ', $cateroiesTitles);
+        return implode(', ', $categoriesTitles);
     }
 
     /**
@@ -417,6 +417,16 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Reverse order of categories
+     *
+     * @return array
+     */
+    public function getCategoriesReverse()
+    {
+        return array_reverse($this->categories->toArray());
     }
 
     /**

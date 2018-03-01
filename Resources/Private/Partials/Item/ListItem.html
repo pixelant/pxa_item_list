@@ -1,3 +1,4 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <div class="container">
     <div class="filtering-list">
         <f:for each="{items}" as="item" iteration="i">
@@ -27,16 +28,34 @@
                                     <div class="underline-heading">
                                         <h2 class="item-description__header">{item.name}</h2>
                                     </div>
-                                    <f:for each="{customer: 'customer', categories: 'categoriesTitleList', product_choice: 'productChoice', architect: 'architect', consultant: 'consultant', installer: 'installer', description: 'description'}"
+                                    <f:for each="{customer: 'customer', categories: 'categories', product_choice: 'productChoice', architect: 'architect', consultant: 'consultant', installer: 'installer', description: 'description'}"
                                            key="translateKey"
                                            as="propertyName">
-                                        <p>
-                                            <strong>
-                                                <f:translate key="tx_pxaitemlist_domain_model_item.{translateKey}"/>
-                                                :
-                                            </strong>
-                                            &nbsp;{item.{propertyName}}
-                                        </p>
+                                        <f:if condition="{propertyName} == 'categories'">
+                                            <f:then>
+                                                <f:groupedFor each="{item.categoriesReverse}" as="categoriesGroup" groupBy="parent" groupKey="parentCategory">
+                                                    <p>
+                                                        <strong>
+                                                            {parentCategory.title}:
+                                                        </strong>
+                                                        <f:for each="{categoriesGroup}" as="category" iteration="i">
+                                                            <f:if condition="{i.isFirst}">
+                                                                <f:then><span>{category.title}</span></f:then>
+                                                                <f:else><span>, {category.title}</span></f:else>
+                                                            </f:if>
+                                                        </f:for>
+                                                    </p>
+                                                </f:groupedFor>
+                                            </f:then>
+                                            <f:else>
+                                                <p>
+                                                    <strong>
+                                                        <f:translate key="tx_pxaitemlist_domain_model_item.{translateKey}"/>:
+                                                    </strong>
+                                                    &nbsp;{item.{propertyName}}
+                                                </p>
+                                            </f:else>
+                                        </f:if>
                                     </f:for>
                                 </div>
                             </div>
@@ -66,3 +85,4 @@
         </f:if>
     </f:alias>
 </f:section>
+</html>
