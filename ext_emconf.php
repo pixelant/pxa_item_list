@@ -10,7 +10,7 @@
  * "version" and "dependencies" must not be touched!
  ***************************************************************/
 
-$EM_CONF[$_EXTKEY] = array(
+$EM_CONF[$_EXTKEY] = [
     'title' => 'Item list',
     'description' => 'Listing items. Show detail on item click. Filter by categories and attributes.',
     'category' => 'plugin',
@@ -21,14 +21,14 @@ $EM_CONF[$_EXTKEY] = array(
     'uploadfolder' => '1',
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '1.0.7',
-    'constraints' => array(
-        'depends' => array(
-            'typo3' => '8.7.0-8.7.99',
-        ),
-        'conflicts' => array(
-        ),
-        'suggests' => array(
-        ),
-    ),
-);
+    'version' => '2.0.3',
+    'constraints' => [
+        'depends' => [
+            'typo3' => '8.7.0-8.7.99'
+        ],
+        'conflicts' => [
+        ],
+        'suggests' => [
+        ]
+    ]
+];
