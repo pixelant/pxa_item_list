@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="messages" date="2017-09-17T13:07:47Z"
+      product-name="pxa_item_list">
+    <header/>
+    <body>
+      <trans-unit id="be.extension.name">
+        <source>Item list</source>
+      </trans-unit>
+      <trans-unit id="be.extension.itemlist.name">
+        <source>Item List Plugin</source>
+      </trans-unit>
+      <trans-unit id="be.extension.itemlist.description">
+        <source>Plugin to display a list of item. Show detail on item click. Filter by categories.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

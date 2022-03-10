@@ -7,26 +7,12 @@
 				</TCEforms>
 				<type>array</type>
 				<el>
-					<switchableControllerActions>
-						<TCEforms>
-							<label>Select function</label>
-							<config>
-								<type>select</type>
-								<items>
-									<numIndex index="0">
-										<numIndex index="0">List with Preview</numIndex>
-										<numIndex index="1">Item->list;</numIndex>
-									</numIndex>
-								</items>
-							</config>
-						</TCEforms>
-					</switchableControllerActions>
 					<settings.filterCategory1>
                         <TCEforms>
                             <label>LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:flexform.filterCategory1</label>
                             <config>
                                 <type>select</type>
-                                <renderMode>tree</renderMode>
+                                <renderType>selectTree</renderType>
                                 <treeConfig>
                                     <parentField>parent</parentField>
                                     <appearance>
@@ -49,7 +35,7 @@
                             <label>LLL:EXT:pxa_item_list/Resources/Private/Language/locallang_db.xlf:flexform.filterCategory2</label>
                             <config>
                                 <type>select</type>
-                                <renderMode>tree</renderMode>
+                                <renderType>selectTree</renderType>
                                 <treeConfig>
                                     <parentField>parent</parentField>
                                     <appearance>
