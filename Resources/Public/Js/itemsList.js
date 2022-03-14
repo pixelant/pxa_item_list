@@ -1,129 +1,99 @@
+window.addEventListener('load', (event) => {
+  let input = document.querySelectorAll('.js__filter-checkbox__input'),
+    item = document.querySelectorAll('.js__filtering-list__item'),
+    target = document.querySelectorAll('.js__filtering-list__item-target'),
+    preview = document.querySelectorAll('.js__filtering-list__item-preview'),
+    close = document.querySelectorAll('.js__close-preview'),
+    selected = []
 
-const filterModule = (function () {
+  input.forEach(element => {
+    element.addEventListener('change', function () {
+      toggleFilters()
+      toggleItems()
+    })
+  })
 
-  /** Return array of all categories of filtered item
-    * 
-    * @param $elem - filtered item (DOM element)
-    */
+  target.forEach(element => {
+    element.addEventListener('click', function (e) {
+      toggleTarget(element)
+    })
+  })
 
-  var _getCategories = function ($elem) {
-    return $elem.attr('data-categories') ? $elem.attr('data-categories').split(',') : []
-  }
+  close.forEach(element => {
+    element.addEventListener('click', function (e) {
+      element.closest(item.forEach(element => {
+        element.classList.remove('_item-open')
+      }))
+      element.closest(preview.forEach(element => {
+        element.classList.add('hidden')
+      }))
+    })
+  })
 
-  /**
-    * @param $elem - filtered item (DOM element)
-    * @param categorys - array of categories selected by user
-    */
+  orderItem()
 
-  var _matchCategory = function ($elem, categorys) {
-    for (var i = 0; i < categorys.length; i++) {
-      for (var n = 0; n < _getCategories($elem).length; n++) {
-        if (_getCategories($elem)[n] == categorys[i]) {
-          return true
-        }
-      }
-    }
-  }
-
- /** 
-  * Set class with sequence number for each visible item
-  * (necessary for styling)
-  */
-
-  var _orderItem = function () {
+  function orderItem() {
     var count = 1;
-    $('._item-visible').each(function (i) {
-      $(this).removeClass('_item-1 _item-2 _item-3').addClass('_item-' + count);
-      count ++
+    var itemVisible = document.getElementsByClassName('_item-visible')
+    Object.keys(itemVisible).forEach(element => {
+      itemVisible[element].classList.remove('_item-1', '_item-2', '_item-3'),
+      itemVisible[element].classList.add('_item-' + count)
+      count++
       if (count == 4) {
         count = 1
       }
     })
   }
 
-  return { 
-
-    /** 
-    * Sets class for items which category are the same, 
-    * as user have selected
-    *
-    * @param categorys - array of categories selected by user
-    */
-
-    itemsFilter: function (categorys) {
-      $('.js__filtering-list__item').each(function (i) {
-        $(this).addClass('_item-visible')
-        if (categorys.length && !_matchCategory($(this), categorys)) {
-          $(this).removeClass('_item-visible')
-        }
-      })
-      _orderItem()
-    }
-  }
-
-}());
-
-/**
- *  Load event
- */
-
-$(window).on('load', function () {
-  var $input = $('.js__filter-checkbox__input'),
-      $item = $('.js__filtering-list__item'),
-      $target = $('.js__filtering-list__item-target'),
-      $close = $('.js__close-preview')
-
-  filterModule.itemsFilter([])
-
-  /**
-  *  Change event, runs filtering method
-  */
-
-  $input.on('change', function () {
-    var selected = []
-    $input.each(function () {
-      if(this.checked) {
-        selected.push($(this).val())
+  function toggleFilters(e) {
+    selected = []
+    input.forEach(element => {
+      if (element.checked) {
+        selected.push(element.value)
       }
     })
-    filterModule.itemsFilter(selected)
-  })
+  }
 
-  /**
-  *  Click event, show/hide preview item
-  */
+  function toggleItems(e) {
+    item.forEach( element => {
+      if (selected.length == 0) {
+        element.classList.add('_item-visible')
+      } else {
+        const itemCategories = element.dataset['categories'].split(',')
 
-  $target.on('click', function () {
-    var $self = $(this);
-    $self.parent().toggleClass('_item-open').siblings().removeClass('_item-open');
+        const filteredArray = itemCategories.filter(value => selected.includes(value));
 
-    /**
-    *  Sroll to the clicked element
-    */
+        const found = filteredArray.some(r => selected.indexOf(r) >= 0)
 
-    $('html, body').animate({
-      scrollTop: $self.offset().top - 100 + 'px'
-    }, 600);
-
-    /**
-    *  Initilize swiper after item opened
-    */
-    var $sl = new Swiper($(this).parent().find('.js__item-description__scroll-helper'), {
-      direction: 'vertical',
-      slidesPerView: 'auto',
-      freeMode: true,
-      nextButton: $(this).parent().find('.arrow-down'),
-      prevButton: $(this).parent().find('.arrow-up')
+        if(found) {
+          element.classList.add('_item-visible')
+        } else {
+          element.classList.remove('_item-visible')
+        }
+      }
     })
-  })
+    orderItem()
+  }
 
-  /**
-  *  Click event, hide preview item
-  */
+  function toggleTarget(item) {
+    const targetId = item.dataset['targetId']
+    const previewItem = document.getElementById(targetId)
+    const isHidden = previewItem.classList.contains('hidden')
 
-  $close.on('click', function () {
-    $(this).closest($item).removeClass('_item-open');
-  })
+    preview.forEach(element => {
+      if(element.id !== targetId) {
+        element.classList.add('hidden')
+        element.parentElement.classList.remove('_item-open')
+      }
+    });
+
+    if (isHidden) {
+      previewItem.classList.remove('hidden')
+      item.parentElement.classList.add('_item-open')
+      previewItem.scrollIntoView();
+    } else {
+      previewItem.classList.add('hidden')
+      item.parentElement.classList.remove('_item-open')
+    }
+  }
 })
-
-

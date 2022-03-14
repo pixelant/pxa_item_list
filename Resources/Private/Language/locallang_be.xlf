@@ -13,6 +13,12 @@
       <trans-unit id="be.extension.itemlist.description">
         <source>Plugin to display a list of items. Show detail on item click. Filter by categories.</source>
       </trans-unit>
+      <trans-unit id="flexform.filterCategory1">
+        <source>Filter category</source>
+      </trans-unit>
+      <trans-unit id="flexform.filterCategory2">
+        <source>Filter category secondary</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

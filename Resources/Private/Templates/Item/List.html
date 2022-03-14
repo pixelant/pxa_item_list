@@ -2,7 +2,9 @@
 <f:layout name="Default" />
 
 <f:section name="main">
-    <f:render partial="Item/CategoryFilter" arguments="{settings: settings, filterCategories: filterCategories}" />
-    <f:render partial="Item/ListItem" arguments="{items: items, settings: settings}" />
+    <f:asset.script identifier="itemsList-js" src="EXT:pxa_item_list/Resources/Public/Js/itemsList.js" />
+    <f:asset.css identifier="itemslist-css" href="EXT:pxa_item_list/Resources/Public/Css/itemsList.css" />
+        <f:render partial="Item/CategoryFilter" arguments="{settings: settings, filterCategories: filterCategories}" />
+        <f:render partial="Item/ListItem" arguments="{items: items, settings: settings}" />
 </f:section>
 </html>

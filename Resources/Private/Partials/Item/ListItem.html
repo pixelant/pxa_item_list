@@ -1,16 +1,16 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<div class="container">
-    <div class="filtering-list">
+<div class="filtering-list-wrp container">
+    <div class="filtering-list row">
         <f:for each="{items}" as="item" iteration="i">
-            <div class="filtering-list__item _item-visible js__filtering-list__item"
+            <div class="filtering-list__item _item-visible js__filtering-list__item col-md-4 col-lg-4"
                  data-categories="{item.categoriesUidList}">
-                <div class="filtering-list__item-wrp js__filtering-list__item-target">
+                <div class="filtering-list__item-wrp js__filtering-list__item-target" data-target-id="target-{item.uid}">
                     <div class="filtering-list__item-img">
                         <f:render section="imagePreview" arguments="{item: item}"/>
                     </div>
                     <h4>{item.name}</h4>
                 </div>
-                <div class="filtering-list__item-preview">
+                <div class="filtering-list__item-preview js__filtering-list__item-preview hidden" id="target-{item.uid}">
                     <div class="filtering-list__item-media"
                          style="background-image:url({f:render(partial: 'Item/ListItemLargeImageUrl', arguments: '{item: item}')})"></div>
                     <div class="filtering-list__item-description">
@@ -21,10 +21,10 @@
                         <div class="scroll-control arrow-down">
                             <i class="icons icon-chevron-down"></i>
                         </div>
-                        <div class="item-description__scroll-helper swiper-container js__item-description__scroll-helper">
-                            <div class="swiper-wrapper">
-                                 
-                                <div class="swiper-slide">
+                        <div class="item-description__scroll-helper">
+                            <div class="item-description-wrapper">
+
+                                <div class="item-description">
                                     <div class="underline-heading">
                                         <h2 class="item-description__header">{item.name}</h2>
                                     </div>
