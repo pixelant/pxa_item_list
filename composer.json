@@ -14,12 +14,12 @@
         "pixelant/pxa_item_list": "self.version"
     },
     "require": {
-        "typo3/cms": ">=8.7.0 <=8.7.99"
+        "typo3/cms": "^10.4"
     },
     "require-dev": {
-        "nimut/testing-framework": "^1.0",
-        "squizlabs/php_codesniffer": "2.*",
-        "phpunit/phpunit": "^5.4"
+        "nimut/testing-framework": "^5.0.3",
+        "squizlabs/php_codesniffer": "^3.5.5",
+        "phpunit/phpunit": "^7.5.20"
     },
     "scripts": {
         "php:codesniffer": "vendor/bin/phpcs --standard=PSR2 Classes/ Tests/ *.php",
