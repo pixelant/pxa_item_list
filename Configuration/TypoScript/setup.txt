@@ -29,13 +29,15 @@ plugin.tx_pxaitemlist_item {
                 columnPositionClearfix = 3
             }
         }
-	  }
+    }
 }
 
-# Include css
+config.recordLinks.referenceLink {
+  forceLink = 0
 
-page.includeCSS.itemsList = EXT:pxa_item_list/Resources/Public/Css/itemsList.css
-
-# Include js
-
-page.includeJSFooterlibs.itemsList = EXT:pxa_item_list/Resources/Public/Js/itemsList.js
+  typolink {
+    section = reference-{field:uid}
+    section.insertData = 1
+    parameter = {$plugin.tx_pxaitemlist_item.settings.referencePageId}
+  }
+}

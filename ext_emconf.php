@@ -11,20 +11,20 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = [
-    'title' => 'Item list',
+    'title' => 'Pxa item list',
     'description' => 'Listing items. Show detail on item click. Filter by categories and attributes.',
     'category' => 'plugin',
     'author' => 'Pixelant',
     'author_email' => 'info@pixelant.se',
-    'state' => 'alpha',
+    'state' => 'beta',
     'internal' => '',
     'uploadfolder' => '1',
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '2.0.6',
+    'version' => '10.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '8.7.0-8.7.99'
+            'typo3' => '10.4.0-10.4.99'
         ],
         'conflicts' => [
         ],

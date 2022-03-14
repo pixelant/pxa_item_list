@@ -12,7 +12,6 @@ return array(
         'versioning_followPages' => true,
 
         'languageField' => 'sys_language_uid',
-        'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
         'delete' => 'deleted',
         'enablecolumns' => array(
@@ -22,12 +21,8 @@ return array(
         ),
         'searchFields' => 'name,year,customer,product_choice,architect,consultant,'.
         'installer,description,image,pdf,date,',
-        'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('pxa_item_list') .
+        'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('pxa_item_list') .
         'Resources/Public/Icons/tx_pxaitemlist_domain_model_item.gif'
-    ),
-    'interface' => array(
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, year, customer,'.
-        'product_choice, architect, consultant, installer, description, image, pdf, date',
     ),
     'types' => array(
         '1' => array(

@@ -27,6 +27,7 @@ namespace Pixelant\PxaItemList\Domain\Model;
 
 use TYPO3\CMS\Extbase\Domain\Model\Category;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 /**
  * Item
@@ -45,7 +46,7 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Name
      *
      * @var      string
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $name = '';
 
@@ -53,7 +54,7 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * customer
      *
      * @var      string
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $customer = '';
 
@@ -61,7 +62,7 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * product choice
      *
      * @var      string
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $productChoice = '';
 
@@ -69,7 +70,7 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * architect
      *
      * @var      string
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $architect = '';
 
@@ -77,7 +78,7 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * consultant
      *
      * @var      string
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $consultant = '';
 
@@ -85,7 +86,7 @@ class Item extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * installer
      *
      * @var      string
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      */
     protected $installer = '';
 

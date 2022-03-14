@@ -41,7 +41,7 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * itemRepository
      *
      * @var    \Pixelant\PxaItemList\Domain\Repository\ItemRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $itemRepository = null;
 
@@ -49,7 +49,7 @@ class ItemController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * categoryRepository
      *
      * @var    \TYPO3\CMS\Extbase\Domain\Repository\CategoryRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $categoryRepository = null;
 
