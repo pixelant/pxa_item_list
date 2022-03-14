@@ -4,7 +4,7 @@
         <f:for each="{items}" as="item" iteration="i">
             <div class="filtering-list__item _item-visible js__filtering-list__item col-md-4 col-lg-4"
                  data-categories="{item.categoriesUidList}">
-                <div class="filtering-list__item-wrp js__filtering-list__item-target" data-target-id="target-{item.uid}">
+                <div class="filtering-list__item-wrp js__filtering-list__item-target" data-target-id="target-{item.uid}" id="reference-{item.uid}">
                     <div class="filtering-list__item-img">
                         <f:render section="imagePreview" arguments="{item: item}"/>
                     </div>

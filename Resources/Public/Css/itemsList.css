@@ -182,6 +182,7 @@
     display: flex;
     padding: 50px 0 10px 10px;
     margin-bottom: 50px;
+    scroll-margin-top: 215px;
 }
 
 .filtering-list__item-wrp h4 {
@@ -252,13 +253,13 @@
     }
 
     .filtering-list__item._item-open {
-        height: 670px;
+        height: 720px;
     }
 
     .filtering-list__item._item-open .filtering-list__item-preview {
         display: flex;
         padding: 50px 0 50px 50px;
-        margin-bottom: 0;
+        margin-bottom: 50px;
     }
 }
 
@@ -269,7 +270,7 @@
     }
 
     .filtering-list__item._item-open {
-        height: 850px;
+        height: 900px;
     }
 
     .filtering-list__item-description {
@@ -297,7 +298,7 @@
     }
 
     .filtering-list__item._item-open {
-        height: 960px;
+        height: 1010px;
     }
 
     .filtering-list__item-description {
@@ -311,7 +312,7 @@
     }
 
     .filtering-list__item._item-open {
-        height: 1020px;
+        height: 1070px;
     }
 }
 

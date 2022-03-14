@@ -12,4 +12,7 @@ plugin.tx_pxaitemlist_item {
 		# cat=plugin.tx_pxaitemlist_item//a; type=string; label=Default storage PID
 		storagePid =
 	}
+	settings {
+		referencePageId =
+	}
 }

@@ -4,7 +4,8 @@ window.addEventListener('load', (event) => {
     target = document.querySelectorAll('.js__filtering-list__item-target'),
     preview = document.querySelectorAll('.js__filtering-list__item-preview'),
     close = document.querySelectorAll('.js__close-preview'),
-    selected = []
+    selected = [],
+    hash = window.location.hash.slice(1)
 
   input.forEach(element => {
     element.addEventListener('change', function () {
@@ -31,6 +32,11 @@ window.addEventListener('load', (event) => {
   })
 
   orderItem()
+
+  if (hash) {
+    let element = document.getElementById(hash)
+    toggleTarget(element)
+  }
 
   function orderItem() {
     var count = 1;

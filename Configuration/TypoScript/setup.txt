@@ -29,6 +29,15 @@ plugin.tx_pxaitemlist_item {
                 columnPositionClearfix = 3
             }
         }
-	  }
+    }
 }
 
+config.recordLinks.referenceLink {
+  forceLink = 0
+
+  typolink {
+    section = reference-{field:uid}
+    section.insertData = 1
+    parameter = {$plugin.tx_pxaitemlist_item.settings.referencePageId}
+  }
+}
