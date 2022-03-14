@@ -14,7 +14,7 @@
         "pixelant/pxa_item_list": "self.version"
     },
     "require": {
-        "typo3/cms": "^10.4"
+        "typo3/cms-core": "^10.4"
     },
     "require-dev": {
         "nimut/testing-framework": "^5.0.3",
